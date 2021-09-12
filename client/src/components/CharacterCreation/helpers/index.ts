@@ -14,13 +14,13 @@ export const CHARACTER_ROLES = [
   "Technology Specialists"
 ]
 
-export const CHARACTER_HISTORY_QUESTIONS = [
-  "Where was your character born?",
-  "Where was your character raised?",
-  "Where was your character trained?",
-  "Where is your character now?",
-  "How does your character feel about the dark aspects of the world?"
-]
+export const CHARACTER_HISTORY_QUESTIONS = {
+  aspect: "How does your character feel about the dark aspects of the world?",
+  born: "Where was your character born?",
+  now: "Where is your character now?",
+  raised: "Where was your character raised?",
+  trained: "Where was your character trained?",
+}
 
 export const CHARACTER_WORLD_VIEW = [
   "Wetwork",

@@ -19,4 +19,11 @@ declare module "@bishada/character-types" {
     now: NullableString,
     outlook: Outlook
   }
+
+  type Character = {
+    id: number,
+    name: NullableString,
+    history: History,
+    role: NullableString,
+  }
 }

@@ -1,60 +1,66 @@
-import { SetStateAction, useState } from "react"
-import { EuiForm, EuiFormRow, EuiFieldText, EuiSelect, EuiText, EuiTextArea } from '@elastic/eui'
-
+import { SetStateAction, useEffect, useState } from "react"
 import { useRecoilState } from 'recoil';
-import { characterRole } from "../../state"
+import { EuiAccordion, EuiForm, EuiFormRow, EuiSpacer, EuiTextArea } from '@elastic/eui'
 
-import { CHARACTER_ROLES } from "../../helpers"
-
+import ChooseRole from "./ChooseRole"
+import { CHARACTER_CREATION_HISTORY } from '../../state';
+import { CHARACTER_HISTORY_QUESTIONS } from '../../helpers';
 
 const TabRoleHistory = () => {
-  const options = CHARACTER_ROLES.map(role => ( {  text: role, value: role,} ))
 
-  const [ role, setRole ] = useRecoilState(characterRole)
-  const [ birthPlace, setBirthPlace ] = useState("")
+  const [ history, setHistory ] = useRecoilState(CHARACTER_CREATION_HISTORY)
+
+  const [ birth, setBirth ] = useState("")
   const [ raised, setRaised ] = useState("")
   const [ trained, setTrained ] = useState("")
-
-  const roleOnChange = ( { target }: Event ) => setRole(target.value)
-  const birthPlaceChange = ( { target }: Event ) => setBirthPlace(target.value)
-  const raisedChange = ( { target }: Event ) => setRaised(target.value)
-  const trainedChange = ( { target }: Event ) => setTrained(target.value)
+  const [ now, setNow ] = useState("")
+  const [ aspect, setAspect ] = useState("")
 
   return(
     <EuiForm component="form">
+      <ChooseRole />
 
-      <EuiFormRow label="Choose a role">
-        <EuiSelect
-          options={options}
-          value={role}
-          onChange={roleOnChange}
-        />
-      </EuiFormRow>
+      <EuiSpacer />
 
-      <EuiFormRow label="Where was your character born?">
+      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.born}>
         <EuiTextArea
-          title="Where was your character born?"
-          value={birthPlace}
-          onChange={birthPlaceChange}
+          fullWidth
+          onChange={( { target }: Event ) => setBirth(target.value)}
+          value={birth}
         />
-      </EuiFormRow>
+      </EuiAccordion>
 
-      <EuiFormRow label="Where was your character raised?">
+      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.raised}>
         <EuiTextArea
-          title="Where was your character raised?"
+          fullWidth
+          onChange={( { target }: Event ) => setRaised(target.value)}
           value={raised}
-          onChange={raisedChange}
         />
-      </EuiFormRow>
+      </EuiAccordion>
 
-      <EuiFormRow label="Where was your character trained?">
+      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.trained}>
         <EuiTextArea
-          title="Where was your character trained?"
+          fullWidth
+          onChange={( { target }: Event ) => setTrained(target.value)}
           value={trained}
-          onChange={trainedChange}
         />
-      </EuiFormRow>
+      </EuiAccordion>
 
+      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.now}>
+        <EuiTextArea
+          fullWidth
+          onChange={( { target }: Event ) => setNow(target.value)}
+          value={now}
+        />
+      </EuiAccordion>
+
+      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.aspect}>
+        <EuiTextArea
+          fullWidth
+          onChange={( { target }: Event ) => setAspect(target.value)}
+          value={aspect}
+        />
+      </EuiAccordion>
 
     </EuiForm>
   )
