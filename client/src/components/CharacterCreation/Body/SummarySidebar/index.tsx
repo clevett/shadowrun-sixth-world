@@ -1,7 +1,7 @@
 import { EuiAvatar, EuiDescriptionList } from '@elastic/eui'
 
 import { useRecoilValue } from 'recoil';
-import { GET_CHARACTER } from "../../state"
+import { GET_CHARACTER } from "../../../../recoil"
 
 const SummarySidebar = () => {
   const character = useRecoilValue(GET_CHARACTER);

@@ -1,71 +1,65 @@
-import { SetStateAction, useEffect, useState } from "react"
 import { useRecoilState } from 'recoil';
-import { EuiAccordion, EuiForm, EuiFormRow, EuiSpacer, EuiTextArea } from '@elastic/eui'
+import { EuiAccordion, EuiForm, EuiSpacer, EuiTextArea } from '@elastic/eui'
 
 import ChooseRole from "./ChooseRole"
-import { CHARACTER_CREATION_HISTORY } from '../../state';
+import Outlook from "./Outlook"
+import {
+  CHARACTER_CREATION_HISTORY_BIRTH,
+  CHARACTER_CREATION_HISTORY_NOW,
+  CHARACTER_CREATION_HISTORY_RAISED,
+  CHARACTER_CREATION_HISTORY_TRAINED,
+} from '../../../../recoil';
 import { CHARACTER_HISTORY_QUESTIONS } from '../../helpers';
 
 const TabRoleHistory = () => {
-
-  const [ history, setHistory ] = useRecoilState(CHARACTER_CREATION_HISTORY)
-
-  const [ birth, setBirth ] = useState("")
-  const [ raised, setRaised ] = useState("")
-  const [ trained, setTrained ] = useState("")
-  const [ now, setNow ] = useState("")
-  const [ aspect, setAspect ] = useState("")
+  const [ birth, setBirth ] = useRecoilState(CHARACTER_CREATION_HISTORY_BIRTH)
+  const [ raised, setRaised ] = useRecoilState(CHARACTER_CREATION_HISTORY_RAISED)
+  const [ trained, setTrained ] = useRecoilState(CHARACTER_CREATION_HISTORY_TRAINED)
+  const [ now, setNow ] = useRecoilState(CHARACTER_CREATION_HISTORY_NOW)
 
   return(
     <EuiForm component="form">
+      
       <ChooseRole />
 
       <EuiSpacer />
 
-      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.born}>
+      <EuiAccordion id="accordionBorn" buttonContent={CHARACTER_HISTORY_QUESTIONS.born}>
         <EuiTextArea
           fullWidth
-          onChange={( { target }: Event ) => setBirth(target.value)}
+          onChange={( { target }) => setBirth(target.value)}
           value={birth}
         />
       </EuiAccordion>
 
-      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.raised}>
+      <EuiAccordion id="accordionRaised" buttonContent={CHARACTER_HISTORY_QUESTIONS.raised}>
         <EuiTextArea
           fullWidth
-          onChange={( { target }: Event ) => setRaised(target.value)}
+          onChange={( { target }) => setRaised(target.value)}
           value={raised}
         />
       </EuiAccordion>
 
-      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.trained}>
+      <EuiAccordion id="accordionTrained" buttonContent={CHARACTER_HISTORY_QUESTIONS.trained}>
         <EuiTextArea
           fullWidth
-          onChange={( { target }: Event ) => setTrained(target.value)}
+          onChange={( { target }) => setTrained(target.value)}
           value={trained}
         />
       </EuiAccordion>
 
-      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.now}>
+      <EuiAccordion id="accordionNow" buttonContent={CHARACTER_HISTORY_QUESTIONS.now}>
         <EuiTextArea
           fullWidth
-          onChange={( { target }: Event ) => setNow(target.value)}
+          onChange={( { target }) => setNow(target.value)}
           value={now}
         />
       </EuiAccordion>
 
-      <EuiAccordion id="accordion1" buttonContent={CHARACTER_HISTORY_QUESTIONS.aspect}>
-        <EuiTextArea
-          fullWidth
-          onChange={( { target }: Event ) => setAspect(target.value)}
-          value={aspect}
-        />
-      </EuiAccordion>
+      <Outlook />
 
     </EuiForm>
   )
 }
-
-type Event = { target: { value: SetStateAction<string> } }
 
 export default TabRoleHistory

@@ -2,7 +2,7 @@ import { useRecoilState } from 'recoil';
 
 import { EuiFormRow, EuiSelect } from '@elastic/eui'
 
-import { CHARACTER_CREATION_ROLE } from "../../../state"
+import { CHARACTER_CREATION_ROLE } from "../../../../../recoil"
 import { CHARACTER_ROLES } from "../../../helpers"
 
 const ChooseRole = () => {
