@@ -1,17 +1,25 @@
 import './App.scss';
+import {
+  RecoilRoot,
+  // atom,
+  // selector,
+  // useRecoilState,
+  // useRecoilValue,
+} from 'recoil';
+
 
 import '@elastic/eui/dist/eui_theme_light.css';
 import '@elastic/eui/dist/eui_theme_dark.css';
 
-import Header from "../Header"
-import Body from "../Body"
+import Header from "../CharacterCreation/Header"
+import Body from "../CharacterCreation/Body"
 
 export const App = () => {
   return (
-    <>
+    <RecoilRoot>
       <Header />
       <Body />
-    </>
+    </RecoilRoot>
   );
 }
 

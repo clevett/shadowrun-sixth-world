@@ -1,6 +1,11 @@
 import { EuiAvatar, EuiDescriptionList } from '@elastic/eui'
 
+import { useRecoilState } from 'recoil';
+import { characterRole } from "../../state"
+
 const SummarySidebar = () => {
+  const [ role ] = useRecoilState(characterRole)
+
   //TODO: Make dynamic with runner's info
   const avatar = "https://source.unsplash.com/64x64/?cat"
   const runnerName = "Rocinante"
@@ -12,7 +17,7 @@ const SummarySidebar = () => {
     },
     {
       title: "Role",
-      description: 'Street Sam',
+      description: role,
     },
     {
       title: "History",

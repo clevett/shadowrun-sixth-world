@@ -1,10 +1,11 @@
+import { CHARACTER_CREATION_STEPS } from "../../helpers/"
+
 import TabRoleHistory from "../TabRoleHistory"
 import TabHome from "../TabHome"
-import { EuiButton } from '@elastic/eui'
 
 import "./styles.sass"
 
-export const tabList = ['Home', '1. Role & History', '2. Priorities', '3. Qualities', '4. Karma', '5. Gear', '6. Finish']
+export const tabList = ['Home', ...CHARACTER_CREATION_STEPS]
 
 export const TabContainer = ( { selectedTabIndex, updateSelectedTab }: TabContainerProps ) => {
   const getTab = () => {
