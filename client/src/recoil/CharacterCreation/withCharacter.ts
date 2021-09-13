@@ -7,6 +7,8 @@ import {
   CHARACTER_CREATION_HISTORY_TRAINED,
   CHARACTER_CREATION_OUTLOOK,
   CHARACTER_CREATION_ROLE,
+  CHARACTER_CREATION_PRIORITIES_METATYPE,
+  CHARACTER_CREATION_PRIORITIES_SPECIAL,
 } from "../index"
 
 export const GET_CHARACTER = selector({
@@ -14,7 +16,6 @@ export const GET_CHARACTER = selector({
   get: ({get}) => {
     return {
       id: 1,
-      name: "Rocinante",
       history: {
         birth: get(CHARACTER_CREATION_HISTORY_BIRTH),
         raised: get(CHARACTER_CREATION_HISTORY_RAISED),
@@ -22,7 +23,10 @@ export const GET_CHARACTER = selector({
         now: get(CHARACTER_CREATION_HISTORY_NOW),
         outlook: get(CHARACTER_CREATION_OUTLOOK)
       },
+      name: "Rocinante",
+      metatype: get(CHARACTER_CREATION_PRIORITIES_METATYPE),
       role: get(CHARACTER_CREATION_ROLE),
+      special: get(CHARACTER_CREATION_PRIORITIES_SPECIAL),
     };
   },
 });

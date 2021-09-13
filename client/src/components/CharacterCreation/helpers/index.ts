@@ -22,7 +22,7 @@ export const CHARACTER_HISTORY_QUESTIONS = {
   trained: "Where was your character trained?",
 }
 
-export const CHARACTER_WORLD_VIEW = [
+export const CHARACTER_WORLD_OUTLOOK = [
   "Wetwork",
   "Drugs and alcohol",
   "Trafficking",

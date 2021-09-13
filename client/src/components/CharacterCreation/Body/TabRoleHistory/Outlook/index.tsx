@@ -2,7 +2,7 @@
 
 import { useRecoilState } from "recoil"
 
-import { EuiAccordion, EuiFieldText, EuiForm, EuiFormRow, EuiSpacer, EuiTextArea } from '@elastic/eui'
+import { EuiAccordion, EuiFieldText, EuiFormRow, EuiTextArea } from '@elastic/eui'
 
 import {
   CHARACTER_CREATION_OUTLOOK_ASPECT,
@@ -59,7 +59,6 @@ const Outlook = () => {
           value={injustices}
         />
       </EuiFormRow>
-
     </EuiAccordion>
   )
 }

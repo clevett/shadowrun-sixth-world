@@ -1,12 +1,5 @@
 import './App.scss';
-import {
-  RecoilRoot,
-  // atom,
-  // selector,
-  // useRecoilState,
-  // useRecoilValue,
-} from 'recoil';
-
+import { RecoilRoot } from 'recoil';
 
 import '@elastic/eui/dist/eui_theme_light.css';
 import '@elastic/eui/dist/eui_theme_dark.css';

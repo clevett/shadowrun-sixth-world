@@ -8,7 +8,7 @@ import border from "./borderRight.png"
 import "./styles.sass"
 
 const Body = () => {
-  const [ selectedTab, setSelectedTab ] = useState(1)
+  const [ selectedTab, setSelectedTab ] = useState(2)
 
   const updateSelectedTab = ( listIndex: number ) => { setSelectedTab( listIndex ) }
   const isSelected = ( index: number ) => index === selectedTab

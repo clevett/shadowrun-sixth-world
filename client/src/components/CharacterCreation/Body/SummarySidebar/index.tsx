@@ -1,6 +1,6 @@
+import { useRecoilValue } from 'recoil';
 import { EuiAvatar, EuiDescriptionList } from '@elastic/eui'
 
-import { useRecoilValue } from 'recoil';
 import { GET_CHARACTER } from "../../../../recoil"
 
 const SummarySidebar = () => {
@@ -15,11 +15,7 @@ const SummarySidebar = () => {
   const listItems = [
     {
       title: character.name,
-      description: 'Ork',
-    },
-    {
-      title: "Role",
-      description: character.role,
+      description: `${character.role} (${character.metatype})`,
     },
     {
       title: "Qualities",

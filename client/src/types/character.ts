@@ -1,9 +1,23 @@
-declare module "@bishada/character-types" {
+declare module "character-types" {
   type NullableBoolean = boolean | null
 
   type NullableNumber = number | null
 
   type NullableString = string | null
+
+  type MinMax = { min: number, max: number }
+
+  type Attribute = {
+    agility: MinMax,
+    body: MinMax, 
+    charisma: MinMax,
+    edge: MinMax,
+    intuition: MinMax,
+    logic: MinMax,
+    reaction: MinMax,
+    strength: MinMax,
+    willpower: MinMax,
+  }
 
   type Outlook = {
     injustice: NullableString

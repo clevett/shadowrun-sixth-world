@@ -1,7 +1,8 @@
 import { CHARACTER_CREATION_STEPS } from "../../helpers/"
 
-import TabRoleHistory from "../TabRoleHistory"
 import TabHome from "../TabHome"
+import TabPriorities from '../TabPriorities'
+import TabRoleHistory from "../TabRoleHistory"
 
 import "./styles.sass"
 
@@ -14,6 +15,8 @@ export const TabContainer = ( { selectedTabIndex, updateSelectedTab }: TabContai
         return <TabHome />
       case 1:
         return <TabRoleHistory />
+      case 2:
+        return <TabPriorities />
       default:
         return <div>Tab Not Yet Created</div>
     }
