@@ -1,4 +1,4 @@
-import { CHARACTER_CREATION_STEPS } from "../../helpers/"
+import { CHARACTER_CREATION_STEPS } from "../../../../data/"
 
 import TabHome from "../TabHome"
 import TabPriorities from '../TabPriorities'

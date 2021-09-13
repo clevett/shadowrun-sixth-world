@@ -8,7 +8,7 @@ import {
   CHARACTER_CREATION_PRIORITIES_SPECIAL
 } from "../../../../recoil"
 
-import { METATYPES, SPECIAL_PRIORITIES } from '../../../../data'
+import { METATYPES, SPECIAL_PRIORITIES } from '../../../../data/'
 
 import "./styles.sass"
 

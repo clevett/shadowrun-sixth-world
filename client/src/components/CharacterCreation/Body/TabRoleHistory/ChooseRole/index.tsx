@@ -4,7 +4,7 @@ import { EuiFormRow, EuiSelect } from '@elastic/eui'
 import { buildOption } from "../../../../../utilities/euiHelpers"
 
 import { CHARACTER_CREATION_ROLE } from "../../../../../recoil"
-import { CHARACTER_ROLES } from "../../../helpers"
+import { CHARACTER_ROLES } from "../../../../../data/"
 
 const ChooseRole = () => {
   const options = CHARACTER_ROLES.map(role => buildOption(role))

@@ -1,5 +1,5 @@
 import { atom } from "recoil"
-import { CHARACTER_ROLES } from "../../components/CharacterCreation/helpers/index"
+import { CHARACTER_ROLES } from "../../data/creation"
 
 export const CHARACTER_CREATION_ROLE = atom({
   key: 'CHARACTER_CREATION_ROLE',

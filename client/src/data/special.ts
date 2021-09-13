@@ -1,13 +1,15 @@
-const SPECIAL_PRIORITIES = [
+const SPECIAL_DEFAULT = {
+  A: 4,
+  B: 3,
+  C: 2,
+  D: 1,
+  E: 0
+}
+
+export const SPECIAL_PRIORITIES = [
   {
     name: "full magician",
-    priorities: {
-      A: 4,
-      B: 3,
-      C: 2,
-      D: 1,
-      E: 0
-    },
+    priorities: SPECIAL_DEFAULT,
     attribute: "magic"
   },
   {
@@ -23,35 +25,17 @@ const SPECIAL_PRIORITIES = [
   },
   {
     name: "mystic adept",
-    priorities: {
-      A: 4,
-      B: 3,
-      C: 2,
-      D: 1,
-      E: 0
-    },
+    priorities: SPECIAL_DEFAULT,
     attribute: "magic"
   },
   {
     name: "adept",
-    priorities: {
-      A: 4,
-      B: 3,
-      C: 2,
-      D: 1,
-      E: 0
-    },
+    priorities: SPECIAL_DEFAULT,
     attribute: "magic"
   },
   {
     name: "technomancer",
-    priorities: {
-      A: 4,
-      B: 3,
-      C: 2,
-      D: 1,
-      E: 0
-    },
+    priorities: SPECIAL_DEFAULT,
     type: "resonance"
   },
 ]

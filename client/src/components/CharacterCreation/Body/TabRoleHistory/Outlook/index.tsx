@@ -1,7 +1,4 @@
-
-
 import { useRecoilState } from "recoil"
-
 import { EuiAccordion, EuiFieldText, EuiFormRow, EuiTextArea } from '@elastic/eui'
 
 import {
@@ -11,7 +8,8 @@ import {
   CHARACTER_CREATION_OUTLOOK_TRAFFICKING,
   CHARACTER_CREATION_OUTLOOK_WETWORK,
 } from '../../../../../recoil';
-import { CHARACTER_HISTORY_QUESTIONS } from '../../../helpers';
+
+import { CHARACTER_HISTORY_QUESTIONS } from '../../../../../data/';
 
 const Outlook = () => {
   const [ aspect, setAspect ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_ASPECT)

@@ -9,7 +9,7 @@ import {
   CHARACTER_CREATION_HISTORY_RAISED,
   CHARACTER_CREATION_HISTORY_TRAINED,
 } from '../../../../recoil';
-import { CHARACTER_HISTORY_QUESTIONS } from '../../helpers';
+import { CHARACTER_HISTORY_QUESTIONS } from '../../../../data/';
 
 const TabRoleHistory = () => {
   const [ birth, setBirth ] = useRecoilState(CHARACTER_CREATION_HISTORY_BIRTH)
