@@ -1,36 +1,43 @@
+import { useRecoilValue } from 'recoil'
+import { EuiButton } from '@elastic/eui'
+
+import {
+  CHARACTER_CREATION_PRIORITIES_SPECIAL 
+} from '../../../../../../recoil'
 import { PRIORITIES } from "../../../../../../data"
-import { GetSpecialColumnText } from "./../helpers"
-import { convertIntIntoNuyen } from "../../../../helpers"
-import { findPriorityByLetter } from "../helpers"
+import { getRowValue } from "./helpers"
+import { centerCell } from '../helpers'
+
+import "./styles.sass"
 
 const PriorityCell = ({
   columnName,
   priorityLetter,
+  updatePriority
 }: PriorityCellProps) => {
-  const centerCell = (value: string | number) => <><div className="text-align-center">{value}</div></>
-  let rowValue: string | number = ""
+  const special = useRecoilValue(CHARACTER_CREATION_PRIORITIES_SPECIAL)
 
-  if (columnName === PRIORITIES.OPTIONS.special) {
-    rowValue = GetSpecialColumnText(priorityLetter)
-  } else {
-    const priorityValues = findPriorityByLetter(priorityLetter)
-    const priorityValue = priorityValues && priorityValues[`${columnName}`]
-  
-    if (!priorityValue) {
-      rowValue =  "Unable find value"
-    } else {
-      rowValue = columnName === PRIORITIES.OPTIONS.resources 
-      ? convertIntIntoNuyen(priorityValue) 
-      : priorityValue
+  const handleChange = () => updatePriority(columnName, priorityLetter)
+
+  const renderComponent = () => {
+    if(columnName === PRIORITIES.OPTIONS.special && (special === "mundane" || priorityLetter === "E")) {
+      return centerCell(getRowValue(columnName, priorityLetter))
     }
+
+    return (
+      <EuiButton className="priority-cell-button" onClick={handleChange}>
+        {centerCell(getRowValue(columnName, priorityLetter))}
+      </EuiButton>
+    )
   }
 
-  return centerCell(rowValue)
+  return renderComponent()
 }
 
 type PriorityCellProps = {
   columnName: PrioritiesNames,
   priorityLetter: PriorityLetters,
+  updatePriority: (columnName: PrioritiesNames, priorityLetter: PriorityLetters) => void
 }
 
 export default PriorityCell

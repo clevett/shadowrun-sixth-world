@@ -18,8 +18,14 @@ const SummarySidebar = () => {
       description: `${character.role} (${character.metatype})`,
     },
     {
-      title: "Qualities",
-      description: 'Ea deserunt magna amet nostrud sunt esse magna eu.',
+      title: "Priority",
+      description: `
+        A: ${character.priorities.A}
+        B: ${character.priorities.B}
+        C: ${character.priorities.C}
+        D: ${character.priorities.D}
+        E: ${character.priorities.E}
+      `,
     },
   ]
 
@@ -32,6 +38,7 @@ const SummarySidebar = () => {
         type="space"
       />
       <EuiDescriptionList
+        compressed
         listItems={listItems}
       />
     </>

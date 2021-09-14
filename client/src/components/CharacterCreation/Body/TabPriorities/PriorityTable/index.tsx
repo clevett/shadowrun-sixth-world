@@ -1,59 +1,61 @@
+import { useRecoilState } from "recoil"
 import { EuiDataGrid } from '@elastic/eui';
 
 import { PRIORITIES } from "../../../../../data"
+import {
+  CHARACTER_CREATION_PRIORITIES_A,
+  CHARACTER_CREATION_PRIORITIES_B,
+  CHARACTER_CREATION_PRIORITIES_C,
+  CHARACTER_CREATION_PRIORITIES_D,
+  CHARACTER_CREATION_PRIORITIES_E,
+} from '../../../../../recoil'
+
+import { columns, centerCell, getPriorityKeyFromRowId } from './helpers';
+
+import PriorityCell from './PriorityCell'
 
 import "./styles.sass"
-import PriorityCell from './PriorityCell';
 
 const PriorityTable = () => {
-  const defaultColumns = {
-    isExpandable: false,
-    isSortable: true,
-    actions: { showHide: false, showMoveRight: false, showMoveLeft: false },
-  }
+  const [A, setA] = useRecoilState(CHARACTER_CREATION_PRIORITIES_A)
+  const [B, setB] = useRecoilState(CHARACTER_CREATION_PRIORITIES_B)
+  const [C, setC] = useRecoilState(CHARACTER_CREATION_PRIORITIES_C)
+  const [D, setD] = useRecoilState(CHARACTER_CREATION_PRIORITIES_D)
+  const [E, setE] = useRecoilState(CHARACTER_CREATION_PRIORITIES_E)
 
-  const columns = [
-    {
-      id: "Priority",
-      initialWidth: 100,
-      ...defaultColumns
-    },
-    {
-      id: PRIORITIES.OPTIONS.adjustment,
-      initialWidth: 100,
-      ...defaultColumns
-    },
-    {
-      id: PRIORITIES.OPTIONS.attributes,
-      initialWidth: 100,
-      ...defaultColumns
-    },
-    {
-      id: PRIORITIES.OPTIONS.skills,
-      initialWidth: 100,
-      ...defaultColumns
-    },
-    {
-      id: PRIORITIES.OPTIONS.special,
-      ...defaultColumns,
-      isExpandable: true,
-    },
-    {
-      id: PRIORITIES.OPTIONS.resources,
-      initialWidth: 100,
-      ...defaultColumns
+  console.table({ A, B, C, D, E })
+
+  const updatePriority = (priorityName: PrioritiesNames, priorityLetter: PriorityLetters) => {
+    switch(priorityLetter) {
+      case "A":
+        setA(priorityName)
+        break
+      case "B":
+        setB(priorityName)
+        break
+      case "C":
+        setC(priorityName)
+        break
+      case "D":
+        setD(priorityName)
+        break
+      case "E":
+        setE(priorityName)
+        break
     }
-  ]
-
-  const centerCell = (value: string | number) => <><div className="text-align-center">{value}</div></>
-
-  const getPriorityKeyFromRowId = (rowId: number ) => PRIORITIES.KEYS[rowId] as PriorityLetters
+  }
 
   const dataSwitch = (rowId:number, columnId: PrioritiesNames | "Priority") => {
     if ( columnId === "Priority") {
       return centerCell( PRIORITIES.KEYS[rowId] )
     } else {
-      return <PriorityCell columnName={columnId} priorityLetter={getPriorityKeyFromRowId(rowId)}/>
+      return (
+        <PriorityCell
+          columnName={columnId} 
+          priorityLetter={getPriorityKeyFromRowId(rowId)}
+          updatePriority={updatePriority}
+        />
+      )
     }
   }
 

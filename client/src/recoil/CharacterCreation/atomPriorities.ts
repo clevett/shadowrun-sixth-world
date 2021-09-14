@@ -1,13 +1,38 @@
 
 import { atom } from "recoil"
-import { SPECIAL } from "../../data"
+import { METATYPE, PRIORITIES, SPECIAL } from "../../data"
 
 export const CHARACTER_CREATION_PRIORITIES_METATYPE = atom({
   key: 'CHARACTER_CREATION_PRIORITIES_METATYPE',
-  default: "human"
+  default: METATYPE.METATYPES.human
 })
 
 export const CHARACTER_CREATION_PRIORITIES_SPECIAL = atom({
   key: 'CHARACTER_CREATION_PRIORITIES_SPECIAL',
   default: SPECIAL.TYPES.mundane
+})
+
+export const CHARACTER_CREATION_PRIORITIES_A = atom({
+  key: 'CHARACTER_CREATION_PRIORITIES_A',
+  default: PRIORITIES.OPTIONS.attributes
+})
+
+export const CHARACTER_CREATION_PRIORITIES_B = atom({
+  key: 'CHARACTER_CREATION_PRIORITIES_B',
+  default: PRIORITIES.OPTIONS.skills
+})
+
+export const CHARACTER_CREATION_PRIORITIES_C = atom({
+  key: 'CHARACTER_CREATION_PRIORITIES_C',
+  default: PRIORITIES.OPTIONS.adjustment
+})
+
+export const CHARACTER_CREATION_PRIORITIES_D = atom({
+  key: 'CHARACTER_CREATION_PRIORITIES_D',
+  default: PRIORITIES.OPTIONS.resources
+})
+
+export const CHARACTER_CREATION_PRIORITIES_E = atom({
+  key: 'CHARACTER_CREATION_PRIORITIES_E',
+  default: PRIORITIES.OPTIONS.special
 })
