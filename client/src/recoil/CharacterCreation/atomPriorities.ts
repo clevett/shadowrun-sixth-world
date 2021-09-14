@@ -1,4 +1,6 @@
+
 import { atom } from "recoil"
+import { SPECIAL } from "../../data"
 
 export const CHARACTER_CREATION_PRIORITIES_METATYPE = atom({
   key: 'CHARACTER_CREATION_PRIORITIES_METATYPE',
@@ -7,5 +9,5 @@ export const CHARACTER_CREATION_PRIORITIES_METATYPE = atom({
 
 export const CHARACTER_CREATION_PRIORITIES_SPECIAL = atom({
   key: 'CHARACTER_CREATION_PRIORITIES_SPECIAL',
-  default: "mundane"
+  default: SPECIAL.TYPES.mundane
 })

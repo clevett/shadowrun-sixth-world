@@ -1,6 +1,7 @@
 import { useRecoilState } from 'recoil'
-import { EuiForm, EuiFormRow, EuiSelect } from '@elastic/eui'
+import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
+import PriorityTable from './PriorityTable'
 import { buildOption } from "../../../../utilities/euiHelpers"
 
 import { 
@@ -8,15 +9,15 @@ import {
   CHARACTER_CREATION_PRIORITIES_SPECIAL
 } from "../../../../recoil"
 
-import { METATYPES, SPECIAL_PRIORITIES } from '../../../../data/'
+import { METATYPE, PRIORITIES } from '../../../../data/'
 
 import "./styles.sass"
 
 const TabPriorities = () => {
-  const metatypeOptions = METATYPES.map(meta => buildOption(meta.name ))
+  const metatypeOptions = Object.values(METATYPE.METATYPES).map(meta => buildOption(meta ))
   const [metatype, setMetatype] = useRecoilState(CHARACTER_CREATION_PRIORITIES_METATYPE)
 
-  const getSpecialOptions = SPECIAL_PRIORITIES.map(special => ( buildOption(special.name) ))
+  const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
   const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
   const [special, setSpecial] = useRecoilState(CHARACTER_CREATION_PRIORITIES_SPECIAL)
 
@@ -41,6 +42,10 @@ const TabPriorities = () => {
           />
         </EuiFormRow>
       </EuiForm>
+
+      <EuiSpacer />
+
+      <PriorityTable />    
     </>
   )
 }

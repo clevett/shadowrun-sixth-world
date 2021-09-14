@@ -1,9 +1,3 @@
-
-type NullableBoolean = boolean | null
-type NullableNumber = number | null
-type NullableString = string | null
-type NullableStringArray = string[] | null
-
 type MinMax = { min: number, max: number }
 
 type AttributeNames = "agility" |"body" |"charisma" |"edge" |"intuition" |"logic" |"reaction" |"strength" | "willpower"
@@ -20,14 +14,6 @@ type Attributes = {
   willpower: MinMax,
 }
 
-type AdjustmentPoints = {
-  A: NullableNumber,
-  B: NullableNumber,
-  C: NullableNumber,
-  D: NullableNumber,
-  E: NullableNumber
-}
-
 type History = {
   birth: NullableString,
   raised: NullableString,
@@ -38,7 +24,7 @@ type History = {
 
 type Metatype = {
   name: string,
-  adjustment_points: AdjustmentPoints,
+  adjustment_points: IntegerPriority,
   attributes: Attributes,
   qualities: NullableStringArray,
 }
@@ -50,9 +36,32 @@ type Outlook = {
   wetwork: NullableString,
 }
 
+type Priorities<T = number> = { [key in PriorityLetters]: T }
+
+type PriorityLetters = "A" | "B" | "C" | "D" | "E"
+
+type PrioritiesNames = "Attributes" | "Adjustment Points" |  "Skills" | "Special" | "Resources"
+
+type PrioritiesMap = { [key in PrioritiesNames]: number }
+interface PrioritiesNumerical extends PrioritiesMap {
+  name: keyof Priorities  
+}
+
+type SpecialAttributes = "magic" | "resonance"
+
+type Special = {
+  name: string,
+  priorities: Priorities,
+  attribute: SpecialAttributes
+}
+
 type Character = {
   id: number,
-  name: NullableString,
+  attributes: Attributes
   history: History,
+  metatype: Metatype,
+  name: NullableString,
+  outlook: Outlook,
+  priorities: Priorities<PrioritiesNames>,
   role: NullableString,
 }
