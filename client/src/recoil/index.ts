@@ -17,7 +17,7 @@ import {
 } from "./CharacterCreation/withRoleHistory"
 
 import {
-  GET_CHARACTER
+  WITH_CHARACTER
 } from "./CharacterCreation/withCharacter"
 
 import {
@@ -29,6 +29,10 @@ import {
   CHARACTER_CREATION_PRIORITIES_METATYPE,
   CHARACTER_CREATION_PRIORITIES_SPECIAL,
 } from "./CharacterCreation/atomPriorities"
+
+import {
+  WITH_PRIORITIES
+} from "./CharacterCreation/withPriorities"
 
 export {
   CHARACTER_CREATION_HISTORY,
@@ -50,6 +54,7 @@ export {
   CHARACTER_CREATION_PRIORITIES_METATYPE,
   CHARACTER_CREATION_PRIORITIES_SPECIAL,
   CHARACTER_CREATION_ROLE,
-  GET_CHARACTER,
+  WITH_CHARACTER,
+  WITH_PRIORITIES
 }
 

@@ -1,4 +1,5 @@
-import { useRecoilState } from 'recoil'
+import { useEffect } from "react"
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
 import PriorityTable from './PriorityTable'
@@ -6,7 +7,7 @@ import { buildOption } from "../../../../utilities/euiHelpers"
 
 import { 
   CHARACTER_CREATION_PRIORITIES_METATYPE,
-  CHARACTER_CREATION_PRIORITIES_SPECIAL
+  CHARACTER_CREATION_PRIORITIES_SPECIAL,
 } from "../../../../recoil"
 
 import { METATYPE, PRIORITIES } from '../../../../data/'
@@ -19,7 +20,7 @@ const TabPriorities = () => {
 
   const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
   const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
-  const [special, setSpecial] = useRecoilState(CHARACTER_CREATION_PRIORITIES_SPECIAL)
+  const [special, setSpecial] = useRecoilState<SpecialTypes>(CHARACTER_CREATION_PRIORITIES_SPECIAL)
 
   return (
     <>
@@ -36,6 +37,7 @@ const TabPriorities = () => {
         <EuiFormRow label="Select magic or resonance">
           <EuiSelect
             className="TabPriorities-select"
+            //@ts-expect-error string does not match SpecialTypes
             onChange={( { target } ) => setSpecial(target.value)}
             options={specialOptions}
             value={special}

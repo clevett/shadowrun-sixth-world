@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil"
-import { EuiDataGrid } from '@elastic/eui';
+import { EuiDataGrid, EuiTextAlign } from '@elastic/eui';
 
 import { PRIORITIES } from "../../../../../data"
 import {
@@ -10,7 +10,7 @@ import {
   CHARACTER_CREATION_PRIORITIES_E,
 } from '../../../../../recoil'
 
-import { columns, centerCell, getPriorityKeyFromRowId } from './helpers';
+import { columns, getPriorityKeyFromRowId } from './helpers';
 
 import PriorityCell from './PriorityCell'
 
@@ -23,7 +23,6 @@ const PriorityTable = () => {
   const [D, setD] = useRecoilState(CHARACTER_CREATION_PRIORITIES_D)
   const [E, setE] = useRecoilState(CHARACTER_CREATION_PRIORITIES_E)
 
-  console.table({ A, B, C, D, E })
 
   const updatePriority = (priorityName: PrioritiesNames, priorityLetter: PriorityLetters) => {
     switch(priorityLetter) {
@@ -47,7 +46,11 @@ const PriorityTable = () => {
 
   const dataSwitch = (rowId:number, columnId: PrioritiesNames | "Priority") => {
     if ( columnId === "Priority") {
-      return centerCell( PRIORITIES.KEYS[rowId] )
+      return (
+        <EuiTextAlign textAlign="center">
+          { PRIORITIES.KEYS[rowId]}
+        </EuiTextAlign>
+      )
     } else {
       return (
         <PriorityCell

@@ -1,7 +1,15 @@
+import { Options } from '@testing-library/dom/node_modules/pretty-format'
 import { useRecoilValue } from 'recoil'
 
 import { PRIORITIES, SPECIAL } from '../../../../../../../data'
-import { CHARACTER_CREATION_PRIORITIES_SPECIAL } from '../../../../../../../recoil'
+import { 
+  CHARACTER_CREATION_PRIORITIES_A,
+  CHARACTER_CREATION_PRIORITIES_B,
+  CHARACTER_CREATION_PRIORITIES_C,
+  CHARACTER_CREATION_PRIORITIES_D,
+  CHARACTER_CREATION_PRIORITIES_E,
+  CHARACTER_CREATION_PRIORITIES_SPECIAL 
+} from '../../../../../../../recoil'
 import { convertIntIntoNuyen } from '../../../../../helpers'
 
 export const bookMagicString = ( letter: PriorityLetters ) => {
@@ -52,4 +60,24 @@ export const getRowValue = (columnName: PrioritiesNames, letter: PriorityLetters
   }
 
   return priorityValue
+}
+
+export const getPriorityAtom = (letter: PriorityLetters) => {
+  switch(letter) {
+    case "A":
+      return CHARACTER_CREATION_PRIORITIES_A
+    case "B":
+      return CHARACTER_CREATION_PRIORITIES_B
+    case "C":
+      return CHARACTER_CREATION_PRIORITIES_C
+    case "D":
+      return CHARACTER_CREATION_PRIORITIES_D
+    case "E":
+      return CHARACTER_CREATION_PRIORITIES_E
+  }
+}
+
+export const getPreviousKey = (priorities: Priorities<PrioritiesNames>, match: PrioritiesNames) => {
+  const keys = PRIORITIES.KEYS as PriorityLetters[]
+  return keys.find((key) => priorities[key] === match )
 }

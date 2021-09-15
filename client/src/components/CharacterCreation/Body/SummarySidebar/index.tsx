@@ -1,10 +1,10 @@
 import { useRecoilValue } from 'recoil';
 import { EuiAvatar, EuiDescriptionList } from '@elastic/eui'
 
-import { GET_CHARACTER } from "../../../../recoil"
+import { WITH_CHARACTER } from "../../../../recoil"
 
 const SummarySidebar = () => {
-  const character = useRecoilValue(GET_CHARACTER);
+  const character = useRecoilValue(WITH_CHARACTER);
 
   //TODO: Make dynamic with runner's info
   const avatar = "https://source.unsplash.com/64x64/?cat"

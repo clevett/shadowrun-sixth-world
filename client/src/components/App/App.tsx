@@ -1,4 +1,3 @@
-import './App.scss';
 import { RecoilRoot } from 'recoil';
 
 import '@elastic/eui/dist/eui_theme_light.css';

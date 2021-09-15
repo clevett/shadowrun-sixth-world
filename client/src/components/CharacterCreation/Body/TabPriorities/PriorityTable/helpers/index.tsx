@@ -16,17 +16,14 @@ export const columns = [
   },
   {
     id: PRIORITIES.OPTIONS.adjustment,
-    initialWidth: 120,
     ...defaultColumns
   },
   {
     id: PRIORITIES.OPTIONS.attributes,
-    initialWidth: 120,
     ...defaultColumns
   },
   {
     id: PRIORITIES.OPTIONS.skills,
-    initialWidth: 120,
     ...defaultColumns
   },
   {
@@ -35,9 +32,6 @@ export const columns = [
   },
   {
     id: PRIORITIES.OPTIONS.resources,
-    initialWidth: 120,
     ...defaultColumns
   }
 ]
-
-export const centerCell = (value: string | number) => <><div className="text-align-center">{value}</div></>
