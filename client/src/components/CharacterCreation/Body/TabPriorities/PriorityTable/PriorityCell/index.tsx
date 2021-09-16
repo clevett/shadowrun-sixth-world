@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { EuiButton } from '@elastic/eui'
 
 import CellText from "./CellText"
@@ -15,7 +15,7 @@ const PriorityCell = ({
   updatePriority
 }: PriorityCellProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES)
-  const [ special, setSpecial ] = useRecoilState(CHARACTER_CREATION_PRIORITIES_SPECIAL)
+  const special = useRecoilValue(CHARACTER_CREATION_PRIORITIES_SPECIAL)
   
   const fillButton = priorities[priorityLetter] === columnName
   const columnNameIsSpecial = columnName === PRIORITIES.OPTIONS.special
@@ -37,31 +37,17 @@ const PriorityCell = ({
     const previousName = priorities[priorityLetter]
 
     previousKey && updatePriority(previousName, previousKey)
-
-    if (!columnNameIsSpecial && priorityLetterIsE) {
-      setSpecial(SPECIAL.TYPES.full)
-    }
-
     updatePriority(columnName, priorityLetter)
   }
 
   const content = () => <CellText columnName={columnName} priorityLetter={priorityLetter} />
 
-  if (columnNameIsSpecial && !priorityLetterIsE && characterIsMundane) {
+  const mundaneCharacterCannotSelectMagic = columnNameIsSpecial && !priorityLetterIsE && characterIsMundane
+  const mundaneCharactersCannotSelectE = !columnNameIsSpecial && priorityLetterIsE && characterIsMundane
+  const magicCharactersCannotSelectE = columnNameIsSpecial && priorityLetterIsE && !characterIsMundane
+  if ( mundaneCharacterCannotSelectMagic ||  mundaneCharactersCannotSelectE || magicCharactersCannotSelectE) {
     return content()
   }
-
-  if (columnNameIsSpecial && priorityLetterIsE && !characterIsMundane) {
-    return content()
-  }
-
-  if (!columnNameIsSpecial && priorityLetterIsE && characterIsMundane) {
-    return content()
-  }
-
-  console.table({
-
-  })
 
   return (
     <EuiButton className="priority-cell-button" onClick={handleChange} size="s" fill={fillButton}>
