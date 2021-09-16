@@ -16,22 +16,21 @@ const PriorityCell = ({
 }: PriorityCellProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES)
   const [ special, setSpecial ] = useRecoilState(CHARACTER_CREATION_PRIORITIES_SPECIAL)
-  const filled = priorities[priorityLetter] === columnName
+  
+  const fillButton = priorities[priorityLetter] === columnName
+  const columnNameIsSpecial = columnName === PRIORITIES.OPTIONS.special
+  const priorityLetterIsE = priorityLetter === "E"
+  const characterIsMundane = special === SPECIAL.TYPES.mundane
 
   useEffect(() => {
-    if( special === SPECIAL.TYPES.mundane && priorities.E !== PRIORITIES.OPTIONS.special) {
+    if( characterIsMundane && priorities.E !== PRIORITIES.OPTIONS.special) {
       const previousKey = getPreviousKey(priorities, PRIORITIES.OPTIONS.special)
       const previousName = priorities.E
       
       previousKey && updatePriority(previousName, previousKey)
       updatePriority(PRIORITIES.OPTIONS.special, "E")
     }
-
-    if (special !== SPECIAL.TYPES.mundane && priorities.E === PRIORITIES.OPTIONS.special) {
-      updatePriority(PRIORITIES.OPTIONS.special, "D")
-      updatePriority(priorities.D, "E")
-    }
-  }, [ special ])
+  }, [ special, priorities, updatePriority, characterIsMundane ])
 
   const handleChange = () => {
     const previousKey = getPreviousKey(priorities, columnName)
@@ -39,8 +38,8 @@ const PriorityCell = ({
 
     previousKey && updatePriority(previousName, previousKey)
 
-    if (columnName === PRIORITIES.OPTIONS.special && priorityLetter === "E") {
-      setSpecial(SPECIAL.TYPES.mundane)
+    if (!columnNameIsSpecial && priorityLetterIsE) {
+      setSpecial(SPECIAL.TYPES.full)
     }
 
     updatePriority(columnName, priorityLetter)
@@ -48,8 +47,24 @@ const PriorityCell = ({
 
   const content = () => <CellText columnName={columnName} priorityLetter={priorityLetter} />
 
+  if (columnNameIsSpecial && !priorityLetterIsE && characterIsMundane) {
+    return content()
+  }
+
+  if (columnNameIsSpecial && priorityLetterIsE && !characterIsMundane) {
+    return content()
+  }
+
+  if (!columnNameIsSpecial && priorityLetterIsE && characterIsMundane) {
+    return content()
+  }
+
+  console.table({
+
+  })
+
   return (
-    <EuiButton className="priority-cell-button" onClick={handleChange} size="s" fill={filled}>
+    <EuiButton className="priority-cell-button" onClick={handleChange} size="s" fill={fillButton}>
       {content()}
     </EuiButton>
   )

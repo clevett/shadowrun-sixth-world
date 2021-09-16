@@ -1,4 +1,3 @@
-import { Options } from '@testing-library/dom/node_modules/pretty-format'
 import { useRecoilValue } from 'recoil'
 
 import { PRIORITIES, SPECIAL } from '../../../../../../../data'

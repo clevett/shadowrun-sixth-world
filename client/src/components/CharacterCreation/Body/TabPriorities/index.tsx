@@ -1,5 +1,4 @@
-import { useEffect } from "react"
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
 import PriorityTable from './PriorityTable'
@@ -13,6 +12,7 @@ import {
 import { METATYPE, PRIORITIES } from '../../../../data/'
 
 import "./styles.sass"
+
 
 const TabPriorities = () => {
   const metatypeOptions = Object.values(METATYPE.METATYPES).map(meta => buildOption(meta ))
