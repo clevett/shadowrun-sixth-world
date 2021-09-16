@@ -3,12 +3,12 @@ import { EuiFormRow, EuiSelect } from '@elastic/eui'
 
 import { buildOption } from "../../../../../utilities/euiHelpers"
 
-import { CHARACTER_CREATION_ROLE } from "../../../../../recoil"
+import { CHARACTER_HISTORY } from "../../../../../recoil"
 import { CHARACTER_ROLES } from "../../../../../data/"
 
 const ChooseRole = () => {
   const options = CHARACTER_ROLES.map(role => buildOption(role))
-  const [ role, setRole ] = useRecoilState(CHARACTER_CREATION_ROLE)
+  const [ role, setRole ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_ROLE)
 
   return(
     <EuiFormRow label="Choose a role">

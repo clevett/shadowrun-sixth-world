@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil'
 import { EuiButton } from '@elastic/eui'
 
 import CellText from "./CellText"
-import { CHARACTER_CREATION_PRIORITIES_SPECIAL, WITH_PRIORITIES } from '../../../../../../recoil'
+import { CHARACTER_PRIORITIES, WITH_PRIORITIES } from '../../../../../../recoil'
 import { PRIORITIES, SPECIAL } from "../../../../../../data"
 import { getPreviousKey } from "./helpers"
 
@@ -13,8 +13,8 @@ const PriorityCell = ({
   priorityLetter,
   updatePriority
 }: PriorityCellProps) => {
-  const priorities = useRecoilValue(WITH_PRIORITIES)
-  const special = useRecoilValue(CHARACTER_CREATION_PRIORITIES_SPECIAL)
+  const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
+  const special = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
   
   const fillButton = priorities[priorityLetter] === columnName
   const columnNameIsSpecial = columnName === PRIORITIES.OPTIONS.special

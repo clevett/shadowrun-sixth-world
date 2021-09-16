@@ -4,30 +4,26 @@ import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 import PriorityTable from './PriorityTable'
 import { buildOption } from "../../../../utilities/euiHelpers"
 
-import { 
-  CHARACTER_CREATION_PRIORITIES_METATYPE,
-  CHARACTER_CREATION_PRIORITIES_SPECIAL,
-} from "../../../../recoil"
+import { CHARACTER_PRIORITIES } from "../../../../recoil"
 
 import { METATYPE, PRIORITIES } from '../../../../data/'
 
 import "./styles.sass"
 
-
 const TabPriorities = () => {
   const metatypeOptions = Object.values(METATYPE.METATYPES).map(meta => buildOption(meta ))
-  const [metatype, setMetatype] = useRecoilState(CHARACTER_CREATION_PRIORITIES_METATYPE)
+  const [metatype, setMetatype] = useRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
 
   const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
   const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
-  const [special, setSpecial] = useRecoilState<SpecialTypes>(CHARACTER_CREATION_PRIORITIES_SPECIAL)
+  const [special, setSpecial] = useRecoilState<string>(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
 
   return (
     <>
-      <EuiForm component="form">
+      <EuiForm className={"priority-table-data-grid"} component="form">
         <EuiFormRow label="Choose a metatype">
           <EuiSelect
-            className="TabPriorities-select"
+            className="text-transform-capitalize"
             onChange={( { target } ) => setMetatype(target.value)}
             options={metatypeOptions}
             value={metatype}
@@ -36,8 +32,7 @@ const TabPriorities = () => {
 
         <EuiFormRow label="Select magic or resonance">
           <EuiSelect
-            className="TabPriorities-select"
-            //@ts-expect-error string does not match SpecialTypes
+            className="text-transform-capitalize"
             onChange={( { target } ) => setSpecial(target.value)}
             options={specialOptions}
             value={special}

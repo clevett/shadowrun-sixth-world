@@ -1,22 +1,16 @@
 import { useRecoilState } from "recoil"
 import { EuiAccordion, EuiFieldText, EuiFormRow, EuiTextArea } from '@elastic/eui'
 
-import {
-  CHARACTER_CREATION_OUTLOOK_ASPECT,
-  CHARACTER_CREATION_OUTLOOK_INJUSTICE,
-  CHARACTER_CREATION_OUTLOOK_SUBSTANCES,
-  CHARACTER_CREATION_OUTLOOK_TRAFFICKING,
-  CHARACTER_CREATION_OUTLOOK_WETWORK,
-} from '../../../../../recoil';
+import { CHARACTER_HISTORY } from '../../../../../recoil';
 
 import { CHARACTER_HISTORY_QUESTIONS } from '../../../../../data/';
 
 const Outlook = () => {
-  const [ aspect, setAspect ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_ASPECT)
-  const [ injustices, setInjustice ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_INJUSTICE)
-  const [ substances, setSubstances ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_SUBSTANCES)
-  const [ trafficking, setTrafficking ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_TRAFFICKING)
-  const [ wetwork, setWetwork ] = useRecoilState(CHARACTER_CREATION_OUTLOOK_WETWORK)
+  const [ aspect, setAspect ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_OUTLOOK_ASPECT)
+  const [ injustices, setInjustice ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_OUTLOOK_INJUSTICE)
+  const [ substances, setSubstances ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_OUTLOOK_SUBSTANCES)
+  const [ trafficking, setTrafficking ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_OUTLOOK_TRAFFICKING)
+  const [ wetwork, setWetwork ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_OUTLOOK_WETWORK)
 
   return (
     <EuiAccordion id="accordionAspect" buttonContent={CHARACTER_HISTORY_QUESTIONS.aspect}>

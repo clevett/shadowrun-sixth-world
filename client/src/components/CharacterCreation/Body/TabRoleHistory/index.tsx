@@ -3,19 +3,14 @@ import { EuiAccordion, EuiForm, EuiSpacer, EuiTextArea } from '@elastic/eui'
 
 import ChooseRole from "./ChooseRole"
 import Outlook from "./Outlook"
-import {
-  CHARACTER_CREATION_HISTORY_BIRTH,
-  CHARACTER_CREATION_HISTORY_NOW,
-  CHARACTER_CREATION_HISTORY_RAISED,
-  CHARACTER_CREATION_HISTORY_TRAINED,
-} from '../../../../recoil';
+import { CHARACTER_HISTORY } from '../../../../recoil';
 import { CHARACTER_HISTORY_QUESTIONS } from '../../../../data/';
 
 const TabRoleHistory = () => {
-  const [ birth, setBirth ] = useRecoilState(CHARACTER_CREATION_HISTORY_BIRTH)
-  const [ raised, setRaised ] = useRecoilState(CHARACTER_CREATION_HISTORY_RAISED)
-  const [ trained, setTrained ] = useRecoilState(CHARACTER_CREATION_HISTORY_TRAINED)
-  const [ now, setNow ] = useRecoilState(CHARACTER_CREATION_HISTORY_NOW)
+  const [ birth, setBirth ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_HISTORY_BIRTH)
+  const [ raised, setRaised ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_HISTORY_RAISED)
+  const [ trained, setTrained ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_HISTORY_TRAINED)
+  const [ now, setNow ] = useRecoilState(CHARACTER_HISTORY.CHARACTER_CREATION_HISTORY_NOW)
 
   return(
     <EuiForm component="form">

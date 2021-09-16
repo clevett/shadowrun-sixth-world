@@ -1,14 +1,7 @@
 import { useRecoilValue } from 'recoil'
 
 import { PRIORITIES, SPECIAL } from '../../../../../../../data'
-import { 
-  CHARACTER_CREATION_PRIORITIES_A,
-  CHARACTER_CREATION_PRIORITIES_B,
-  CHARACTER_CREATION_PRIORITIES_C,
-  CHARACTER_CREATION_PRIORITIES_D,
-  CHARACTER_CREATION_PRIORITIES_E,
-  CHARACTER_CREATION_PRIORITIES_SPECIAL 
-} from '../../../../../../../recoil'
+import { CHARACTER_PRIORITIES } from '../../../../../../../recoil'
 import { convertIntIntoNuyen } from '../../../../../helpers'
 
 export const bookMagicString = ( letter: PriorityLetters ) => {
@@ -20,7 +13,7 @@ export const bookMagicString = ( letter: PriorityLetters ) => {
 }
 
 export const GetSpecialColumnText = ( letter: PriorityLetters ) => {
-  const special = useRecoilValue(CHARACTER_CREATION_PRIORITIES_SPECIAL)
+  const special = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
   const findSpecial = PRIORITIES.SPECIAL.find(priority => priority.name === special)
 
   if (letter === "E") {
@@ -64,15 +57,15 @@ export const getRowValue = (columnName: PrioritiesNames, letter: PriorityLetters
 export const getPriorityAtom = (letter: PriorityLetters) => {
   switch(letter) {
     case "A":
-      return CHARACTER_CREATION_PRIORITIES_A
+      return CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_A
     case "B":
-      return CHARACTER_CREATION_PRIORITIES_B
+      return CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_B
     case "C":
-      return CHARACTER_CREATION_PRIORITIES_C
+      return CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_C
     case "D":
-      return CHARACTER_CREATION_PRIORITIES_D
+      return CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_D
     case "E":
-      return CHARACTER_CREATION_PRIORITIES_E
+      return CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_E
   }
 }
 

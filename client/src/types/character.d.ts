@@ -49,8 +49,6 @@ interface PrioritiesNumerical extends PrioritiesMap {
 
 type SpecialAttributes = "magic" | "resonance"
 
-type SpecialTypes = "adept" | "aspected magician" | "full magician" | "mundane" | "mystic adept" | "technomancer"
-
 type Special = {
   name: SpecialTypes,
   priorities: Priorities,

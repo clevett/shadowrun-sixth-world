@@ -1,4 +1,4 @@
-export const TYPES: {[key: string]: SpecialTypes} = {
+export const TYPES: {[key: string]: string} = {
   adept: "adept",
   aspected: "aspected magician",
   full: "full magician",

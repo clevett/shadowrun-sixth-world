@@ -1,29 +1,27 @@
 import { selector } from "recoil"
 
 import {
-  CHARACTER_CREATION_HISTORY,
-  CHARACTER_CREATION_OUTLOOK,
-  CHARACTER_CREATION_ROLE,
-  CHARACTER_CREATION_PRIORITIES_METATYPE,
-  CHARACTER_CREATION_PRIORITIES_SPECIAL,
+  WITH_HISTORY,
+  CHARACTER_HISTORY,
+  CHARACTER_PRIORITIES,
 } from "../index"
 
-import { WITH_PRIORITIES } from "./withPriorities"
+import { GET_PRIORITIES } from "./withPriorities"
 
-export const WITH_CHARACTER = selector({
-  key: 'WITH_CHARACTER',
+export const GET_CHARACTER = selector({
+  key: 'GET_CHARACTER',
   get: ({get}) => {
     return {
       id: 1,
       history: { 
-        ...get(CHARACTER_CREATION_HISTORY), 
-        ...{outlook: get(CHARACTER_CREATION_OUTLOOK)}
+        ...get(WITH_HISTORY.CHARACTER_CREATION_HISTORY), 
+        ...{outlook: get(WITH_HISTORY.CHARACTER_CREATION_OUTLOOK)}
       },
       name: "Rocinante",
-      metatype: get(CHARACTER_CREATION_PRIORITIES_METATYPE),
-      role: get(CHARACTER_CREATION_ROLE),
-      special: get(CHARACTER_CREATION_PRIORITIES_SPECIAL),
-      priorities: get(WITH_PRIORITIES),
+      metatype: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE),
+      role: get(CHARACTER_HISTORY.CHARACTER_CREATION_ROLE),
+      special: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL),
+      priorities: get(GET_PRIORITIES),
     };
   },
 });
