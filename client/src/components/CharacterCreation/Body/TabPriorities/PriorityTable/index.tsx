@@ -23,7 +23,6 @@ const PriorityTable = () => {
   const setD = useSetRecoilState(CHARACTER_CREATION_PRIORITIES_D)
   const setE = useSetRecoilState(CHARACTER_CREATION_PRIORITIES_E)
 
-
   const updatePriority = (priorityName: PrioritiesNames, priorityLetter: PriorityLetters) => {
     switch(priorityLetter) {
       case "A":

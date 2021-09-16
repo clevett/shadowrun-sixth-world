@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useRecoilValue } from 'recoil'
 import { EuiButton } from '@elastic/eui'
 
@@ -21,16 +20,6 @@ const PriorityCell = ({
   const columnNameIsSpecial = columnName === PRIORITIES.OPTIONS.special
   const priorityLetterIsE = priorityLetter === "E"
   const characterIsMundane = special === SPECIAL.TYPES.mundane
-
-  useEffect(() => {
-    if( characterIsMundane && priorities.E !== PRIORITIES.OPTIONS.special) {
-      const previousKey = getPreviousKey(priorities, PRIORITIES.OPTIONS.special)
-      const previousName = priorities.E
-      
-      previousKey && updatePriority(previousName, previousKey)
-      updatePriority(PRIORITIES.OPTIONS.special, "E")
-    }
-  }, [ special, priorities, updatePriority, characterIsMundane ])
 
   const handleChange = () => {
     const previousKey = getPreviousKey(priorities, columnName)
