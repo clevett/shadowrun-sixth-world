@@ -4,7 +4,7 @@ import { ATOM } from "../index"
 
 export const GET_CHARACTER_ATTRIBUTES = selector({
   key: 'GET_CHARACTER_ATTRIBUTES',
-  get: ({ get }) => {
+  get: ({ get }): { [key in AttributeCoreNames]: number }  => {
     return {
       agility: get( ATOM.characterAttribute(`AGILITY`) ),
       body: get( ATOM.characterAttribute(`BODY`) ), 
@@ -20,7 +20,7 @@ export const GET_CHARACTER_ATTRIBUTES = selector({
 
 export const GET_ALL_CHARACTER_ATTRIBUTES = selector({
   key: 'GET_ALL_CHARACTER_ATTRIBUTES',
-  get: ({ get }) => {
+  get: ({ get }): { [key in AttributeNames]: number }  => {
     return {
       agility: get( ATOM.characterAttribute(`AGILITY`) ),
       body: get( ATOM.characterAttribute(`BODY`) ), 

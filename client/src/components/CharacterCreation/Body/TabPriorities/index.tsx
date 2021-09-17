@@ -52,7 +52,7 @@ const TabPriorities = () => {
 
       <EuiSpacer />
 
-      <AttributeBuy />
+      <AttributeBuy metatypeData={metatypeData} />
 
       <EuiSpacer />
 

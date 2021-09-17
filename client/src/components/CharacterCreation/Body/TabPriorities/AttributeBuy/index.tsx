@@ -1,32 +1,48 @@
-import { EuiFormRow, EuiRange, EuiSpacer, EuiText } from '@elastic/eui'
+import { EuiSpacer, EuiTitle } from '@elastic/eui'
 import { useRecoilValue } from "recoil"
 
 import { WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
-import { METATYPE, PRIORITIES } from '../../../../../data'
+import { METATYPE } from '../../../../../data'
 
-import AttributeSelect from './AttributeSelect'
-import { findPriorityKey } from "../PriorityTable/PriorityCell/helpers"
+import AttributeCounter from './AttributeCounter'
+import { getPriorityValue, totalArrayNumbers } from "../helpers"
 
 import "./styles.sass"
 
-const AttributeBuy = () => {
+const AttributeBuy = ({
+  metatypeData
+}: AttributeBuyProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
-  const attributePriorityLetter = findPriorityKey(priorities, PRIORITIES.OPTIONS.attributes)
-  const attributePoints = attributePriorityLetter && PRIORITIES.ATTRIBUTE_POINTS[attributePriorityLetter]
-
+  const attributePoints = getPriorityValue(priorities)
   const spentPoints = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES)
-  //@ts-expect-error ignore
-  const total: number = Object.values(spentPoints).reduce((a, b) => a + b, 0)
+
+  console.table({
+    attributePoints,
+    spentPoints
+  })
+
+  if(!attributePoints || !metatypeData) {
+    return null
+  }
+
+  const total: number = totalArrayNumbers( Object.values(spentPoints) as number[] )
+  console.log(total)
+  const calculatePointsSpent = total - 8 === attributePoints
 
   return (
     <>
-      <EuiText size="m">{`Attributes (${total - 8} / ${attributePoints})`}</EuiText>
-      <div className="priority-attribute-grid">
+      <EuiTitle size="s">
+        <h2>
+          {`Attributes (${total - 8} / ${attributePoints})`}
+        </h2>
+      </EuiTitle>
+      <div>
         {
           METATYPE.ATTRIBUTES_LIST.map(attribute => {
             return(
-              <AttributeSelect 
+              <AttributeCounter 
                 attribute={attribute}
+                disableInputs={calculatePointsSpent}
                 key={`attribute-buy-${attribute}`}
               />
             )
@@ -38,6 +54,10 @@ const AttributeBuy = () => {
 
     </>
   )
+}
+
+type AttributeBuyProps = {
+  metatypeData?: Metatype
 }
 
 export default AttributeBuy
