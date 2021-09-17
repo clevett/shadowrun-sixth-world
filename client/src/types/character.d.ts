@@ -1,8 +1,13 @@
-type MinMax = { min: number, max: number }
+type MinMax = { 
+  min: number, 
+  max: number
+}
 
 type AttributeCoreNames = "agility" |"body" |"charisma" | "intuition" |"logic" |"reaction" |"strength" | "willpower" 
 
 type AttributeNames = AttributeCoreNames | SpecialAttributes |"edge"
+
+type AttributesCore = { [key in AttributeCoreNames]: number }
 
 type Attributes<T = MinMax> = {
   agility: MinMax,

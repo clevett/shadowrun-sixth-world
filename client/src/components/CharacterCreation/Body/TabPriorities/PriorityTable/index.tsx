@@ -4,13 +4,20 @@ import { EuiDataGrid, EuiTextAlign } from '@elastic/eui';
 import { PRIORITIES } from "../../../../../data"
 import { CHARACTER_PRIORITIES } from '../../../../../recoil'
 
-import { columns, getPriorityKeyFromRowId } from './helpers';
+import { 
+  columns, 
+  getMetatypeAdjustmentPoints, 
+  getPriorityKeyFromRowId, 
+  isColumnAdjustmentPoints 
+} from './helpers';
 
 import PriorityCell from './PriorityCell'
 
 import "./styles.sass"
 
-const PriorityTable = () => {
+const PriorityTable = ({
+  metatypeData
+}: PriorityTableProps) => {
   const setA = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_A)
   const setB = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_B)
   const setC = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_C)
@@ -38,6 +45,8 @@ const PriorityTable = () => {
   }
 
   const dataSwitch = (rowId:number, columnId: PrioritiesNames | "Priority") => {
+    const priorityLetter = getPriorityKeyFromRowId(rowId)
+
     if ( columnId === "Priority") {
       return (
         <EuiTextAlign textAlign="center">
@@ -45,10 +54,20 @@ const PriorityTable = () => {
         </EuiTextAlign>
       )
     } else {
+      const checkAdjustmentPriorityNull = !getMetatypeAdjustmentPoints(metatypeData, priorityLetter) && isColumnAdjustmentPoints(columnId)
+
+      if (checkAdjustmentPriorityNull) {
+        return (
+          <EuiTextAlign className="text-transform-capitalize" textAlign="center">
+            {"-"}
+          </EuiTextAlign>
+        )
+      }
+
       return (
         <PriorityCell
           columnName={columnId} 
-          priorityLetter={getPriorityKeyFromRowId(rowId)}
+          priorityLetter={priorityLetter}
           updatePriority={updatePriority}
         />
       )
@@ -81,6 +100,10 @@ const PriorityTable = () => {
       }}
     />
   )
+}
+
+type PriorityTableProps = {
+  metatypeData: Metatype
 }
 
 export default PriorityTable

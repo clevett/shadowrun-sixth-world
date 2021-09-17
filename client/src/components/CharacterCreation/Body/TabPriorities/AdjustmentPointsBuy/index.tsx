@@ -8,7 +8,7 @@ import { findPriorityKey } from "../PriorityTable/PriorityCell/helpers"
 
 const AdjustmentPointsBuy = ({
   metatypeData
-}: { metatypeData?: Metatype }) => {
+}: { metatypeData: Metatype }) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
   const adjustmentPriorityLetter = findPriorityKey(priorities, PRIORITIES.OPTIONS.adjustment)
   const adjustmentPoints = adjustmentPriorityLetter && PRIORITIES.ADJUSTMENT_POINTS[adjustmentPriorityLetter]

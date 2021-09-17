@@ -35,3 +35,7 @@ export const columns = [
     ...defaultColumns
   }
 ]
+
+export const isColumnAdjustmentPoints = (columnId: string) => columnId === PRIORITIES.OPTIONS.adjustment
+
+export const getMetatypeAdjustmentPoints = (data: Metatype, letter: PriorityLetters) => data?.adjustment_points[letter]

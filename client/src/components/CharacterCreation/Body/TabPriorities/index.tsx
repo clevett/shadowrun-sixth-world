@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
+import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer, EuiToast } from '@elastic/eui'
 
 import AdjustmentPointsBuy from "./AdjustmentPointsBuy"
 import AttributeBuy from './AttributeBuy'
@@ -23,6 +23,30 @@ const TabPriorities = () => {
   const [special, setSpecial] = useRecoilState<string>(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
 
   const metatypeData = getMetatypeData(metatype)
+
+  const getContent = () => {
+    if ( metatypeData ) {
+      return (
+        <>
+          <PriorityTable metatypeData={metatypeData} />
+
+          <EuiSpacer />
+
+          <AttributeBuy metatypeData={metatypeData} />
+
+          <EuiSpacer />
+
+          <AdjustmentPointsBuy metatypeData={metatypeData} />
+
+          <EuiSpacer />
+
+          <MetatypeQualities metatypeData={metatypeData} />
+        </>
+      )
+    } else {
+      return null
+    }
+  }
 
   return (
     <>
@@ -48,19 +72,7 @@ const TabPriorities = () => {
 
       <EuiSpacer />
 
-      <PriorityTable />
-
-      <EuiSpacer />
-
-      <AttributeBuy metatypeData={metatypeData} />
-
-      <EuiSpacer />
-
-      <AdjustmentPointsBuy metatypeData={metatypeData} />
-
-      <EuiSpacer />
-
-      <MetatypeQualities metatypeData={metatypeData} />
+      {getContent()}
 
       <EuiSpacer />
     

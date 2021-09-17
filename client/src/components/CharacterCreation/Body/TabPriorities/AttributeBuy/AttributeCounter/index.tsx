@@ -8,7 +8,8 @@ import "./styles.sass"
 
 const AttributeCounter = ({
   attribute,
-  disableInputs
+  disableInputs,
+  maxed = false,
 }: AttributeSelectProps) => {
   const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const [score, setScore] = useRecoilState<number>(ATOM.characterAttribute(`${attribute.toUpperCase()}`))
@@ -20,8 +21,8 @@ const AttributeCounter = ({
   }
 
   const { min, max } = metatypeData.attributes[attribute] 
-  const maxIsLessThanEqualSix = max <= 6 
-  console.table({min, max})
+
+ // console.table({attribute, min, max})
   
   const onIncrease = () => {
     const increase = score + 1
@@ -40,9 +41,11 @@ const AttributeCounter = ({
 
   }
 
+  const textColorWhenMax = maxed ? "warning" : score === max ? "success" : "default"
+
   return(
     <div className="attribute-select-grid">
-      <EuiText color={score === max ? "success" : "default"}>
+      <EuiText color={textColorWhenMax}>
         {attribute}
       </EuiText>
       <div className="attribute-select-icons">
@@ -52,7 +55,7 @@ const AttributeCounter = ({
           iconType="arrowUp" 
           onClick={onIncrease} 
         /> 
-        <EuiText color={score === max ? "success" : "default"}>
+        <EuiText color={textColorWhenMax}>
           {score}
         </EuiText>
         <EuiButtonIcon 
@@ -69,6 +72,7 @@ const AttributeCounter = ({
 type AttributeSelectProps = {
   attribute: AttributeNames,
   disableInputs: boolean
+  maxed: boolean
 }
 
 export default AttributeCounter

@@ -6,6 +6,7 @@ import { METATYPE } from '../../../../../data'
 
 import AttributeCounter from './AttributeCounter'
 import { getPriorityValue, totalArrayNumbers } from "../helpers"
+import { checkMaxAttributes } from "./helpers"
 
 import "./styles.sass"
 
@@ -14,26 +15,25 @@ const AttributeBuy = ({
 }: AttributeBuyProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
   const attributePoints = getPriorityValue(priorities)
-  const spentPoints = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES)
+  const characterAttributesValues = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES)
 
-  console.table({
-    attributePoints,
-    spentPoints
-  })
-
-  if(!attributePoints || !metatypeData) {
+  if(!attributePoints) {
     return null
   }
 
-  const total: number = totalArrayNumbers( Object.values(spentPoints) as number[] )
-  console.log(total)
-  const calculatePointsSpent = total - 8 === attributePoints
+  const { attributes } = metatypeData
+  const maxAttributes = checkMaxAttributes(attributes, characterAttributesValues)
+
+  const total: number = totalArrayNumbers( Object.values(characterAttributesValues) as number[] )
+  const totalMinusEight = total - 8
+
+  const calculatePointsSpent = totalMinusEight === attributePoints
 
   return (
     <>
       <EuiTitle size="s">
         <h2>
-          {`Attributes (${total - 8} / ${attributePoints})`}
+          {`Attributes (${totalMinusEight} / ${attributePoints})`}
         </h2>
       </EuiTitle>
       <div>
@@ -44,6 +44,7 @@ const AttributeBuy = ({
                 attribute={attribute}
                 disableInputs={calculatePointsSpent}
                 key={`attribute-buy-${attribute}`}
+                maxed={maxAttributes.length > 1 && maxAttributes.includes(attribute)}
               />
             )
           } )
@@ -57,7 +58,7 @@ const AttributeBuy = ({
 }
 
 type AttributeBuyProps = {
-  metatypeData?: Metatype
+  metatypeData: Metatype
 }
 
 export default AttributeBuy
