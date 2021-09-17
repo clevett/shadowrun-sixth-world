@@ -69,7 +69,7 @@ export const getPriorityAtom = (letter: PriorityLetters) => {
   }
 }
 
-export const getPreviousKey = (priorities: Priorities<PrioritiesNames>, match: PrioritiesNames) => {
+export const findPriorityKey = (priorities: Priorities<PrioritiesNames>, match: PrioritiesNames) => {
   const keys = PRIORITIES.KEYS as PriorityLetters[]
   return keys.find((key) => priorities[key] === match )
 }

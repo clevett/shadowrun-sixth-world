@@ -1,11 +1,15 @@
 import { useRecoilState } from 'recoil'
 import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
+import AdjustmentPointsBuy from "./AdjustmentPointsBuy"
+import AttributeBuy from './AttributeBuy'
+import MetatypeQualities from "./MetatypeQualities"
 import PriorityTable from './PriorityTable'
+import SkillBuy from './SkillBuy'
 import { buildOption } from "../../../../utilities/euiHelpers"
+import { getMetatypeData } from "./helpers"
 
 import { CHARACTER_PRIORITIES } from "../../../../recoil"
-
 import { METATYPE, PRIORITIES } from '../../../../data/'
 
 import "./styles.sass"
@@ -17,6 +21,8 @@ const TabPriorities = () => {
   const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
   const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
   const [special, setSpecial] = useRecoilState<string>(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
+
+  const metatypeData = getMetatypeData(metatype)
 
   return (
     <>
@@ -42,7 +48,23 @@ const TabPriorities = () => {
 
       <EuiSpacer />
 
-      <PriorityTable />    
+      <PriorityTable />
+
+      <EuiSpacer />
+
+      <AttributeBuy />
+
+      <EuiSpacer />
+
+      <AdjustmentPointsBuy metatypeData={metatypeData} />
+
+      <EuiSpacer />
+
+      <MetatypeQualities metatypeData={metatypeData} />
+
+      <EuiSpacer />
+    
+      <SkillBuy />
     </>
   )
 }

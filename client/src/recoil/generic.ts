@@ -6,6 +6,11 @@ export const withId = memoize((id: any, value: any) => atom({
   default: value
 }))
 
+export const characterAttribute = memoize(( id: any ) => atom({
+  key:`CHARACTER_ATTRIBUTE_${id}`,
+  default: 1
+}))
+
 export const withWeaponId = memoize((id: any, value: any) => atom({
   key:`CHARACTER_WEAPON_${id}`,
   default: value

@@ -2,6 +2,7 @@ import { useRecoilValue } from 'recoil';
 import { EuiAvatar, EuiDescriptionList } from '@elastic/eui'
 
 import { WITH_CHARACTER } from "../../../../recoil"
+import { ATTRIBUTES_LIST, ATTRIBUTE_LIST_SPECIAL } from '../../../../data/metatype';
 
 const SummarySidebar = () => {
   const character = useRecoilValue(WITH_CHARACTER.GET_CHARACTER);
@@ -11,6 +12,8 @@ const SummarySidebar = () => {
   const runnerName = "Rocinante"
 
   console.log(character)
+
+  const attributeList = [...ATTRIBUTES_LIST, ...ATTRIBUTE_LIST_SPECIAL].map(attribute => `${attribute}: ${character.attributes[attribute]}`).join(', ')
 
   const listItems = [
     {
@@ -27,7 +30,13 @@ const SummarySidebar = () => {
         E: ${character.priorities.E}
       `,
     },
+    {
+      title: "Attributes",
+      description: attributeList,
+    },
   ]
+
+
 
   return (
     <>

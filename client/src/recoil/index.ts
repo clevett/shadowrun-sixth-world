@@ -8,9 +8,15 @@ import * as CHARACTER_PRIORITIES from "./CharacterCreation/atomPriorities"
 
 import * as WITH_PRIORITIES from "./CharacterCreation/withPriorities"
 
+import * as ATOM from "./generic"
+
+import * as WITH_ATTRIBUTES from "./CharacterCreation/withAttributes"
+
 export {
+  ATOM,
   CHARACTER_HISTORY,
   CHARACTER_PRIORITIES,
+  WITH_ATTRIBUTES,
   WITH_CHARACTER,
   WITH_HISTORY,
   WITH_PRIORITIES,

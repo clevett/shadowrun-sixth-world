@@ -2,9 +2,17 @@
 import { ADJUSTMENT_POINTS } from './priorities'
 import { attributeFactory, maxMinFactory } from "./helpers"
 
-export const ATTRIBUTES_LIST = ["agility","body","charisma","edge","intuition","logic","reaction","strength","willpower"]
+export const ATTRIBUTES_LIST: AttributeNames[] = ["body", "agility", "strength", "reaction", "willpower", "logic", "intuition", "charisma",]
 
-export const ATTRIBUTES_DEFAULTS = attributeFactory()
+export const ATTRIBUTES_LIST_WITH_EDGE: AttributeNames[] = [...ATTRIBUTES_LIST, "edge"]
+
+export const ATTRIBUTE_LIST_SPECIAL: AttributeNames[] = ["edge", "magic", "resonance"]
+
+export const ATTRIBUTES_DEFAULTS = {
+  ...attributeFactory(ATTRIBUTES_LIST_WITH_EDGE), 
+  magic: maxMinFactory(6, 0), 
+  resonance: maxMinFactory(6, 0) 
+}
 
 export const METATYPES = {
   dwarf: "dwarf",

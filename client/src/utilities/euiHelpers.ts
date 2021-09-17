@@ -1,1 +1,1 @@
-export const buildOption = (text:string, value: string = text) => ({ text, value })
+export const buildOption = (text:string | number, value: string | number = text) => ({ text, value })

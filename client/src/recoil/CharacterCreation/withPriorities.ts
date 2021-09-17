@@ -14,3 +14,14 @@ export const GET_PRIORITIES = selector({
     }
   }
 })
+
+export const GET_CHARACTER_PRIORITIES = selector({
+  key: 'GET_CHARACTER_PRIORITIES',
+  get: ({ get }) => {
+    return {
+      metatype: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE),
+      special: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL),
+      priorities: get(GET_PRIORITIES),
+    }
+  }
+})

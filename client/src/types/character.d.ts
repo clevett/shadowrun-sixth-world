@@ -1,18 +1,22 @@
 type MinMax = { min: number, max: number }
 
-type AttributeNames = "agility" |"body" |"charisma" |"edge" |"intuition" |"logic" |"reaction" |"strength" | "willpower"
+type AttributeNames = "agility" |"body" |"charisma" |"edge" |"intuition" |"logic" |"reaction" |"strength" | "willpower" | "magic" | "resonance"
 
-type Attributes = {
+type Attributes<T = MinMax> = {
   agility: MinMax,
   body: MinMax, 
   charisma: MinMax,
   edge: MinMax,
   intuition: MinMax,
   logic: MinMax,
+  magic: MinMax,
   reaction: MinMax,
+  resonance: MinMax,
   strength: MinMax,
   willpower: MinMax,
 }
+
+type AttributesNumerical = Attributes<number>
 
 type History = {
   birth: NullableString,

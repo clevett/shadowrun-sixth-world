@@ -1,18 +1,19 @@
 import { selector } from "recoil"
 
 import {
-  WITH_HISTORY,
   CHARACTER_HISTORY,
   CHARACTER_PRIORITIES,
+  WITH_ATTRIBUTES,
+  WITH_HISTORY,
+  WITH_PRIORITIES,
 } from "../index"
-
-import { GET_PRIORITIES } from "./withPriorities"
 
 export const GET_CHARACTER = selector({
   key: 'GET_CHARACTER',
   get: ({get}) => {
     return {
       id: 1,
+      attributes: get(WITH_ATTRIBUTES.GET_ALL_CHARACTER_ATTRIBUTES),
       history: { 
         ...get(WITH_HISTORY.CHARACTER_CREATION_HISTORY), 
         ...{outlook: get(WITH_HISTORY.CHARACTER_CREATION_OUTLOOK)}
@@ -21,7 +22,7 @@ export const GET_CHARACTER = selector({
       metatype: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE),
       role: get(CHARACTER_HISTORY.CHARACTER_CREATION_ROLE),
       special: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL),
-      priorities: get(GET_PRIORITIES),
+      priorities: get(WITH_PRIORITIES.GET_PRIORITIES),
     };
   },
 });

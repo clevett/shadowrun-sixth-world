@@ -4,7 +4,7 @@ import { EuiButton } from '@elastic/eui'
 import CellText from "./CellText"
 import { CHARACTER_PRIORITIES, WITH_PRIORITIES } from '../../../../../../recoil'
 import { PRIORITIES, SPECIAL } from "../../../../../../data"
-import { getPreviousKey } from "./helpers"
+import { findPriorityKey } from "./helpers"
 
 import "./styles.sass"
 
@@ -22,7 +22,7 @@ const PriorityCell = ({
   const characterIsMundane = special === SPECIAL.TYPES.mundane
 
   const handleChange = () => {
-    const previousKey = getPreviousKey(priorities, columnName)
+    const previousKey = findPriorityKey(priorities, columnName)
     const previousName = priorities[priorityLetter]
 
     previousKey && updatePriority(previousName, previousKey)

@@ -62,6 +62,7 @@ const PriorityTable = () => {
 
   return (
     <EuiDataGrid
+      className={"text-align-center"}
       aria-labelledby="priorities table"
       columnVisibility={columnVisibility}
       columns={columns}
@@ -76,7 +77,7 @@ const PriorityTable = () => {
         header: 'shade',
         fontSize: 'm',
         cellPadding: 'm',
-        footer: 'overline'
+        footer: 'overline',
       }}
     />
   )
