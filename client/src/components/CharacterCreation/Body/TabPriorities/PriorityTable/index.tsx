@@ -16,7 +16,7 @@ import PriorityCell from './PriorityCell'
 import "./styles.sass"
 
 const PriorityTable = ({
-  metatypeData
+  metatype
 }: PriorityTableProps) => {
   const setA = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_A)
   const setB = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_B)
@@ -54,7 +54,7 @@ const PriorityTable = ({
         </EuiTextAlign>
       )
     } else {
-      const checkAdjustmentPriorityNull = !getMetatypeAdjustmentPoints(metatypeData, priorityLetter) && isColumnAdjustmentPoints(columnId)
+      const checkAdjustmentPriorityNull = !getMetatypeAdjustmentPoints(metatype, priorityLetter) && isColumnAdjustmentPoints(columnId)
 
       if (checkAdjustmentPriorityNull) {
         return (
@@ -103,7 +103,7 @@ const PriorityTable = ({
 }
 
 type PriorityTableProps = {
-  metatypeData: Metatype
+  metatype: Metatype
 }
 
 export default PriorityTable

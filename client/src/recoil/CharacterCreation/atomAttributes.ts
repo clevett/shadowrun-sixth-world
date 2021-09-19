@@ -46,3 +46,8 @@ export const CHARACTER_ATTRIBUTE_RESONANCE_BASE = atom({
   key: 'CHARACTER_ATTRIBUTE_RESONANCE_BASE',
   default: ATTRIBUTES_DEFAULTS["resonance"].base
 })
+
+export const CHARACTER_ATTRIBUTES_AT_MAX = atom({
+  key: 'CHARACTER_ATTRIBUTES_AT_MAX',
+  default: ["edge"]
+})

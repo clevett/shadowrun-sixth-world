@@ -1,6 +1,6 @@
 
 import { ADJUSTMENT_POINTS } from './priorities'
-import { attributeFactory } from "./helpers"
+import { attributeFactory, maxMinFactory } from "./helpers"
 import { ATTRIBUTE_LIST_SPECIAL } from "./special"
 
 export const ATTRIBUTES_LIST: AttributeNames[] = ["body", "agility", "strength", "reaction", "willpower", "logic", "intuition", "charisma",]
@@ -50,31 +50,56 @@ export const ATTRIBUTES: Metatype[] = [
       A: null,
       B: null,
     },
-    attributes: {
-      ...ATTRIBUTES_DEFAULTS,
-      edge: attributeFactory(7),
-    },
+    attributes: [
+      {
+        //@ts-expect-error type showing up wrong
+        name: "edge",
+        ...maxMinFactory(7)
+      },
+  ],
     qualities: QUALITIES.human,
   },
   {
     name: METATYPES.dwarf,
     adjustment_points: ADJUSTMENT_POINTS,
-    attributes: {
-      ...ATTRIBUTES_DEFAULTS,
-      body: attributeFactory(7),
-      reaction: attributeFactory(5),
-      strength: attributeFactory(8),
-      willpower: attributeFactory(7),
-    },
+    attributes: [
+      {
+        //@ts-expect-error type showing up wrong
+        name: "body",
+        ...maxMinFactory(7)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "strength",
+        ...maxMinFactory(5)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "reaction",
+        ...maxMinFactory(8)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "willpower",
+        ...maxMinFactory(7)
+      }
+    ],
     qualities: QUALITIES.dwarf,
   },
   {
     name: METATYPES.elf,
-    attributes: { 
-      ...ATTRIBUTES_DEFAULTS,
-      agility: attributeFactory(7),
-      charisma: attributeFactory(8) 
-    },
+    attributes:[
+      {
+        //@ts-expect-error type showing up wrong
+        name: "agility",
+        ...maxMinFactory(7)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "charisma",
+        ...maxMinFactory(8)
+      },
+    ],
     adjustment_points: {
       ...ADJUSTMENT_POINTS,
       A: null,
@@ -84,24 +109,50 @@ export const ATTRIBUTES: Metatype[] = [
   {
     name: METATYPES.ork,
     adjustment_points: ADJUSTMENT_POINTS,
-    attributes: {
-      ...ATTRIBUTES_DEFAULTS,
-      body: attributeFactory(8),
-      charisma: attributeFactory(5),
-      strength: attributeFactory(8),
-    },
+    attributes: [
+      {
+        //@ts-expect-error type showing up wrong
+        name: "body",
+        ...maxMinFactory(8)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "strength",
+        ...maxMinFactory(5)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "charisma",
+        ...maxMinFactory(8)
+      }
+    ],
     qualities: QUALITIES.ork,
   },
   {
     name: METATYPES.troll,
     adjustment_points: ADJUSTMENT_POINTS,
-    attributes: { 
-      ...ATTRIBUTES_DEFAULTS,
-      agility: attributeFactory(5),
-      body: attributeFactory(9),
-      charisma: attributeFactory(5),
-      strength: attributeFactory(9),
-    },
+    attributes:  [
+      {
+        //@ts-expect-error type showing up wrong
+        name: "body",
+        ...maxMinFactory(9)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "agility",
+        ...maxMinFactory(5)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "strength",
+        ...maxMinFactory(9)
+      },
+      {
+        //@ts-expect-error type showing up wrong
+        name: "charisma",
+        ...maxMinFactory(5)
+      }
+    ],
     qualities: QUALITIES.troll,
   },
 ]

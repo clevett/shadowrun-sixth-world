@@ -2,7 +2,7 @@ import { EuiForm, EuiText } from '@elastic/eui'
 import { useRecoilValue } from 'recoil'
 
 import { PRIORITIES } from '../../../../../data'
-import { WITH_PRIORITIES } from '../../../../../recoil'
+import { CHARACTER_ATTRIBUTES, WITH_PRIORITIES } from '../../../../../recoil'
 import AttributeCounter from '../AttributeCounter'
 
 import { findPriorityKey } from "../PriorityTable/PriorityCell/helpers"
@@ -14,16 +14,13 @@ const AdjustmentPointsBuy = ({
   special
 }: AdjustmentPointsBuyProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
+  const maxAttributes = useRecoilValue(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
   const adjustmentPriorityLetter = findPriorityKey(priorities, PRIORITIES.OPTIONS.adjustment)
   const points = adjustmentPriorityLetter && PRIORITIES.ADJUSTMENT_POINTS[adjustmentPriorityLetter]
 
   const attributeList = getAdjustmentAttributesList(special, attributes)
 
   console.log(attributeList)
-
-  //const maxAttributes = checkMaxAttributes(allAttributes)
-  //@ts-ignore
-  const maxAttributes = []
   
   return(
     <EuiForm component="form">

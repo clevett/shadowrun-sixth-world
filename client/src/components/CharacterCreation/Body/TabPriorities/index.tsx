@@ -1,4 +1,5 @@
-import { useRecoilState } from 'recoil'
+import { useEffect, useState } from "react"
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
 import AdjustmentPointsBuy from "./AdjustmentPointsBuy"
@@ -15,43 +16,48 @@ import { METATYPE, PRIORITIES } from '../../../../data/'
 import "./styles.sass"
 
 const TabPriorities = () => {
-  const metatypeOptions = Object.values(METATYPE.METATYPES).map(meta => buildOption(meta ))
-  const [metatype, setMetatype] = useRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
+  const [ metatypeName, setMetatypeName ] = useState(METATYPE.METATYPES.human)
 
-  const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
-  const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
+  const [metatype, setMetatype] = useRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const [special, setSpecial] = useRecoilState<string>(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
 
-  const metatypeData = getMetatypeData(metatype)
+  const metatypeOptions = Object.values(METATYPE.METATYPES).map(meta => buildOption(meta ))
+  const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
+  const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
+
+
+  useEffect(() => {
+    const metatypeData = getMetatypeData(metatypeName)
+    
+    if(metatypeData) {
+      setMetatype(metatypeData)
+    }
+  }, [ metatypeName ])
 
   const getContent = () => {
-    if ( metatypeData ) {
-      return (
-        <>
-          <PriorityTable metatypeData={metatypeData} />
+    return (
+      <>
+        <PriorityTable metatype={metatype} />
 
-          <EuiSpacer />
+        <EuiSpacer />
 
-          <AttributeBuy 
-            attributes={metatypeData.attributes}
-          />
+        <AttributeBuy 
+          attributes={metatype.attributes}
+        />
 
-          <EuiSpacer />
+        <EuiSpacer />
 
-          <AdjustmentPointsBuy
-            attributes={metatypeData.attributes}
-            adjustmentPoints={metatypeData.adjustment_points}
-            special={special}
-          />
+        <AdjustmentPointsBuy
+          attributes={metatype.attributes}
+          adjustmentPoints={metatype.adjustment_points}
+          special={special}
+        />
 
-          <EuiSpacer />
+        <EuiSpacer />
 
-          <MetatypeQualities metatypeData={metatypeData} />
-        </>
-      )
-    } else {
-      return null
-    }
+        <MetatypeQualities metatype={metatype} />
+      </>
+    )
   }
 
   return (
@@ -60,9 +66,9 @@ const TabPriorities = () => {
         <EuiFormRow label="Choose a metatype">
           <EuiSelect
             className="text-transform-capitalize"
-            onChange={( { target } ) => setMetatype(target.value)}
+            onChange={( { target } ) => setMetatypeName(target.value)}
             options={metatypeOptions}
-            value={metatype}
+            value={metatypeName}
           />
         </EuiFormRow>
 

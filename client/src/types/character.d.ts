@@ -18,26 +18,24 @@ type Attribute = {
     min: number,
 }
 
+type Attributes = {
+  agility: Attribute,
+  body: Attribute, 
+  charisma: Attribute,
+  edge: Attribute,
+  intuition: Attribute,
+  logic: Attribute,
+  magic: Attribute,
+  reaction: Attribute,
+  resonance: Attribute,
+  strength: Attribute,
+  willpower: Attribute,
+}
+
 type AttributesBase = {
   name: keyof AttributeNames,
   base: number
 }
-
-type Attributes<T = MinMax> = {
-  agility: MinMax,
-  body: MinMax, 
-  charisma: MinMax,
-  edge: MinMax,
-  intuition: MinMax,
-  logic: MinMax,
-  magic: MinMax,
-  reaction: MinMax,
-  resonance: MinMax,
-  strength: MinMax,
-  willpower: MinMax,
-}
-
-type AttributesNumerical = Attributes<number>
 
 type History = {
   birth: NullableString,
@@ -47,10 +45,16 @@ type History = {
   outlook: Outlook
 }
 
+type MetatypeAttribute = {
+  name: keyof AttributeNames,
+  max: number,
+  min: number,
+}
+
 type Metatype = {
   name: string,
   adjustment_points: IntegerPriority,
-  attributes: Attributes,
+  attributes: MetatypeAttribute[],
   qualities: NullableStringArray,
 }
 

@@ -5,13 +5,13 @@ import { EuiText } from '@elastic/eui'
 // import { METATYPE,  } from '../../../../../data'
 
 const MetatypeQualities = ({
-  metatypeData
+  metatype
 }: MetatypeQualitiesProps) => {
   const getQualityText = (quality: string) => <EuiText key={`metatype-quality-${quality}`} size="s">{quality}</EuiText>
 
   const qualities = () => {
-    if(metatypeData?.qualities) {
-      const content = metatypeData.qualities.map(quality => getQualityText(quality))
+    if(metatype?.qualities) {
+      const content = metatype.qualities.map(quality => getQualityText(quality))
       return (
         <>
           <EuiText size="m">Qualities</EuiText>
@@ -29,7 +29,7 @@ const MetatypeQualities = ({
 }
 
 export type MetatypeQualitiesProps = {
-  metatypeData?: Metatype
+  metatype?: Metatype
 }
 
 export default MetatypeQualities
