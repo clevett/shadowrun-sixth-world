@@ -6,4 +6,3 @@ export const TYPES: {[key: string]: string} = {
   mystic: "mystic adept",
   technomancer: "technomancer",
 }
-

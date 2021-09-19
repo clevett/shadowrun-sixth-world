@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil'
-import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer, EuiToast } from '@elastic/eui'
+import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
 import AdjustmentPointsBuy from "./AdjustmentPointsBuy"
 import AttributeBuy from './AttributeBuy'
@@ -32,11 +32,17 @@ const TabPriorities = () => {
 
           <EuiSpacer />
 
-          <AttributeBuy metatypeData={metatypeData} />
+          <AttributeBuy 
+            attributes={metatypeData.attributes}
+          />
 
           <EuiSpacer />
 
-          <AdjustmentPointsBuy metatypeData={metatypeData} />
+          <AdjustmentPointsBuy
+            attributes={metatypeData.attributes}
+            adjustmentPoints={metatypeData.adjustment_points}
+            special={special}
+          />
 
           <EuiSpacer />
 

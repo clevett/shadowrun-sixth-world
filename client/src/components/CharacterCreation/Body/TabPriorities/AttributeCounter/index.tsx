@@ -1,29 +1,19 @@
 import { EuiButtonIcon, EuiText } from '@elastic/eui'
-import { useRecoilValue, useRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 
-import { ATOM, CHARACTER_PRIORITIES } from '../../../../../../recoil'
-import { getMetatypeData } from '../../helpers'
+import { ATOM } from '../../../../../recoil'
 
 import "./styles.sass"
 
 const AttributeCounter = ({
   attribute,
-  disableInputs,
+  disableInputs = false,
   maxed = false,
+  minMax
 }: AttributeSelectProps) => {
-  const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
+  const { min, max } = minMax
   const [score, setScore] = useRecoilState<number>(ATOM.characterAttribute(`${attribute.toUpperCase()}`))
 
-  const metatypeData =  getMetatypeData(metatype)
-
-  if ( !metatypeData ) {
-    return null
-  }
-
-  const { min, max } = metatypeData.attributes[attribute] 
-
- // console.table({attribute, min, max})
-  
   const onIncrease = () => {
     const increase = score + 1
  
@@ -71,8 +61,9 @@ const AttributeCounter = ({
 
 type AttributeSelectProps = {
   attribute: AttributeNames,
-  disableInputs: boolean
-  maxed: boolean
+  disableInputs?: boolean
+  maxed: boolean,
+  minMax: MinMax
 }
 
 export default AttributeCounter

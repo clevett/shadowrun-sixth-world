@@ -4,14 +4,14 @@ import { useRecoilValue } from "recoil"
 import { WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 import { METATYPE } from '../../../../../data'
 
-import AttributeCounter from './AttributeCounter'
+import AttributeCounter from '../AttributeCounter'
 import { getPriorityValue, totalArrayNumbers } from "../helpers"
 import { checkMaxAttributes } from "./helpers"
 
 import "./styles.sass"
 
 const AttributeBuy = ({
-  metatypeData
+  attributes
 }: AttributeBuyProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
   const attributePoints = getPriorityValue(priorities)
@@ -21,7 +21,6 @@ const AttributeBuy = ({
     return null
   }
 
-  const { attributes } = metatypeData
   const maxAttributes = checkMaxAttributes(attributes, characterAttributesValues)
 
   const total: number = totalArrayNumbers( Object.values(characterAttributesValues) as number[] )
@@ -41,9 +40,10 @@ const AttributeBuy = ({
           METATYPE.ATTRIBUTES_LIST.map(attribute => {
             return(
               <AttributeCounter 
-                attribute={attribute}
+                attribute={(attribute as AttributeNames)}
                 disableInputs={calculatePointsSpent}
                 key={`attribute-buy-${attribute}`}
+                minMax={attributes[attribute]}
                 maxed={maxAttributes.length > 1 && maxAttributes.includes(attribute)}
               />
             )
@@ -58,7 +58,7 @@ const AttributeBuy = ({
 }
 
 type AttributeBuyProps = {
-  metatypeData: Metatype
+  attributes: Attributes
 }
 
 export default AttributeBuy
