@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { EuiForm, EuiFormRow, EuiSelect, EuiSpacer } from '@elastic/eui'
 
 import AdjustmentPointsBuy from "./AdjustmentPointsBuy"
@@ -8,7 +8,7 @@ import MetatypeQualities from "./MetatypeQualities"
 import PriorityTable from './PriorityTable'
 import SkillBuy from './SkillBuy'
 import { buildOption } from "../../../../utilities/euiHelpers"
-import { getMetatypeData } from "./helpers"
+import getMetatypeData from "./helpers/getMetatypeData"
 
 import { CHARACTER_PRIORITIES } from "../../../../recoil"
 import { METATYPE, PRIORITIES } from '../../../../data/'
@@ -25,33 +25,26 @@ const TabPriorities = () => {
   const getSpecialOptions = PRIORITIES.SPECIAL.map(special => ( buildOption(special.name) ))
   const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
 
-
   useEffect(() => {
     const metatypeData = getMetatypeData(metatypeName)
     
     if(metatypeData) {
       setMetatype(metatypeData)
     }
-  }, [ metatypeName ])
+  }, [ metatypeName, setMetatype ])
 
   const getContent = () => {
     return (
       <>
         <PriorityTable metatype={metatype} />
+  
+        <EuiSpacer />
+
+        <AttributeBuy />
 
         <EuiSpacer />
 
-        <AttributeBuy 
-          attributes={metatype.attributes}
-        />
-
-        <EuiSpacer />
-
-        <AdjustmentPointsBuy
-          attributes={metatype.attributes}
-          adjustmentPoints={metatype.adjustment_points}
-          special={special}
-        />
+        <AdjustmentPointsBuy />
 
         <EuiSpacer />
 

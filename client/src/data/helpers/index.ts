@@ -5,7 +5,7 @@ export const maxMinFactory = (max = 6, min = 1) => {
   }
 }
 
-export const attributeFactory = (max = 6, min = 1) => {
+export const attributeFactory = ( max = 6, min = 1) => {
   return {
     adjustment: 0,
     augmented: 0,

@@ -2,56 +2,64 @@ import { useEffect } from 'react'
 import { EuiSpacer, EuiTitle } from '@elastic/eui'
 import { useRecoilState, useRecoilValue } from "recoil"
 
-import { CHARACTER_ATTRIBUTES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
-import { METATYPE } from '../../../../../data'
+import { CHARACTER_ATTRIBUTES, CHARACTER_PRIORITIES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 
 import AttributeCounter from '../AttributeCounter'
-import { getPriorityValue } from "../helpers"
-import { checkMaxAttributes, totalBaseValues } from "./helpers"
+import getPriorityValue from "../helpers/getPriorityValue"
+import totalBaseValues from "./helpers/totalBaseValues"
+
+import checkMaxAttributes from "./helpers/checkMaxAttributes"
+
 
 import "./styles.sass"
+import { ATTRIBUTES } from '../../../../../data'
 
-const AttributeBuy = ({
-  attributes
-}: AttributeBuyProps) => {
+const AttributeBuy = () => {
+  const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
-  const allAttributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES) as Attribute[]
-  const [ maxAttributes, setMaxAttributes ] = useRecoilState(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
+
+  const attributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES) as Attribute[]
+  const filterSpecialAttributes = attributes.filter(attribute => !ATTRIBUTES.ADJUSTMENT_LIST.includes(attribute.name) )
+  
+  const [ attributeAtMax, setAttributeAtMax ] = useRecoilState(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
 
   useEffect(() => {
-    setMaxAttributes( checkMaxAttributes(allAttributes) )
-  }, [ allAttributes, setMaxAttributes ])
+    setAttributeAtMax( checkMaxAttributes(attributes) )
+  }, [ attributes, setAttributeAtMax ])
 
-  const baseValues = allAttributes.map(( { name, base } ) => ( { name, base } )) as AttributesBase[]
+  const baseValues = attributes.map(( { name, base } ) => ( { name, base } )) as AttributesBase[]
   const attributePoints = getPriorityValue(priorities)
 
   if(!attributePoints) {
     return null
   }
 
-  const total: number = totalBaseValues( baseValues )
-  const totalMinusEight = total - 8
+  const total: number = totalBaseValues( baseValues ) - 8
 
-  const calculatePointsSpent = totalMinusEight === attributePoints
+  const calculatePointsSpent = total === attributePoints
 
   return (
     <>
       <EuiTitle size="s">
         <h2>
-          {`Attributes (${totalMinusEight} / ${attributePoints})`}
+          {`Attributes (${total} / ${attributePoints})`}
         </h2>
       </EuiTitle>
       <div>
         {
-          METATYPE.ATTRIBUTES_LIST.map(attribute => {
+          filterSpecialAttributes.map(attribute => {
+            const findMaxExceptions = metatype.attributes.find(metaAttribute => metaAttribute.name === attribute.name )
+            const max = findMaxExceptions && findMaxExceptions.name !== "edge" && findMaxExceptions.max
+
             return(
               <AttributeCounter
-                atom={`${attribute.toUpperCase()}_BASE`}
-                attribute={(attribute as AttributeNames)}
+                atom={`${attribute.name.toUpperCase()}_BASE`}
+                attribute={(attribute.name as AttributeNames)}
                 disableInputs={calculatePointsSpent}
-                key={`attribute-buy-${attribute}`}
-                minMax={attributes[attribute]}
-                maxed={maxAttributes.length > 1 && maxAttributes.includes(attribute)}
+                key={`attribute-buy-${attribute.name}`}
+                metaMax={max ? max : attribute.max}
+                metaMin={attribute.min}
+                maxed={attributeAtMax.length > 1 && attributeAtMax.includes(attribute.name)}
               />
             )
           } )
@@ -62,10 +70,6 @@ const AttributeBuy = ({
 
     </>
   )
-}
-
-type AttributeBuyProps = {
-  attributes: Attributes
 }
 
 export default AttributeBuy

@@ -1,3 +1,5 @@
+import * as ATTRIBUTES from "./attributes"
+
 import {
   CHARACTER_CREATION_STEPS,
   CHARACTER_HISTORY_QUESTIONS,
@@ -12,6 +14,7 @@ import * as PRIORITIES from "./priorities"
 import * as SPECIAL from "./special"
 
 export {
+  ATTRIBUTES,
   CHARACTER_CREATION_STEPS,
   CHARACTER_HISTORY_QUESTIONS,
   CHARACTER_ROLES,

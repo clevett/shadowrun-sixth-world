@@ -1,5 +1,5 @@
 import { PRIORITIES, SPECIAL } from '../../../../../../data'
-import { getAttributesOverSix } from '../../AttributeBuy/helpers'
+import getAttributesOverSix from '../../AttributeBuy/helpers/getAttributesOverSix'
 
 export const getSpecialAttribute = ( special: string ) => {
   if (special !== SPECIAL.TYPES.mundane) {
@@ -10,7 +10,7 @@ export const getSpecialAttribute = ( special: string ) => {
 
 export const getAdjustmentAttributesList = (
   special: string,
-  attributes: Attributes
+  attributes: MetatypeAttribute[]
 ) => {
   let attributeList: string[] = []
 

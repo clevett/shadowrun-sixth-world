@@ -4,32 +4,27 @@ import { ATTRIBUTES_DEFAULTS } from '../../data/metatype'
 
 export const base = memoize(( id: string ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_BASE`,
-  //@ts-expect-error ts hates indexing with strings
-  default: ATTRIBUTES_DEFAULTS[id.toLowerCase()].min
+  default: 1
 }))
 
 export const adjustment = memoize(( id: string ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_ADJUSTMENT`,
-  //@ts-expect-error ts hates indexing with strings
-  default: ATTRIBUTES_DEFAULTS[id.toLowerCase()].adjustment
+  default: 0
 }))
 
 export const augmented = memoize(( id: string ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_AUGMENTED`,
-  //@ts-expect-error ts hates indexing with strings
-  default: ATTRIBUTES_DEFAULTS[id.toLowerCase()].augmented
+  default: 0
 }))
 
 export const min = memoize(( id: string ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_MIN`,
-  //@ts-expect-error ts hates indexing with strings
-  default: ATTRIBUTES_DEFAULTS[id.toLowerCase()].min
+  default: 1
 }))
 
-export const max = memoize(( id: string, value = 6 ) => atom({
+export const max = memoize(( id: string ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_MAX`,
-  //@ts-expect-error ts hates indexing with strings
-  default: ATTRIBUTES_DEFAULTS[id.toLowerCase()].max
+  default: 6
 }))
 
 export const CHARACTER_ATTRIBUTE_EDGE_BASE = atom({

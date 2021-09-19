@@ -1,16 +1,6 @@
 
 import { ADJUSTMENT_POINTS } from './priorities'
 import { attributeFactory, maxMinFactory } from "./helpers"
-import { ATTRIBUTE_LIST_SPECIAL } from "./special"
-
-export const ATTRIBUTES_LIST: AttributeNames[] = ["body", "agility", "strength", "reaction", "willpower", "logic", "intuition", "charisma",]
-
-export const ATTRIBUTES_LIST_WITH_EDGE: AttributeNames[] = [...ATTRIBUTES_LIST, "edge"]
-
-export const ATTRIBUTES_LIST_WITH_SPECIAL = [
-  ...ATTRIBUTES_LIST_WITH_EDGE,
-   ...ATTRIBUTE_LIST_SPECIAL
-]
 
 export const ATTRIBUTES_DEFAULTS = {
   body: attributeFactory(),
@@ -52,7 +42,6 @@ export const ATTRIBUTES: Metatype[] = [
     },
     attributes: [
       {
-        //@ts-expect-error type showing up wrong
         name: "edge",
         ...maxMinFactory(7)
       },
@@ -64,22 +53,18 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes: [
       {
-        //@ts-expect-error type showing up wrong
         name: "body",
         ...maxMinFactory(7)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "strength",
         ...maxMinFactory(5)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "reaction",
         ...maxMinFactory(8)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "willpower",
         ...maxMinFactory(7)
       }
@@ -90,12 +75,10 @@ export const ATTRIBUTES: Metatype[] = [
     name: METATYPES.elf,
     attributes:[
       {
-        //@ts-expect-error type showing up wrong
         name: "agility",
         ...maxMinFactory(7)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "charisma",
         ...maxMinFactory(8)
       },
@@ -111,17 +94,14 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes: [
       {
-        //@ts-expect-error type showing up wrong
         name: "body",
         ...maxMinFactory(8)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "strength",
         ...maxMinFactory(5)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "charisma",
         ...maxMinFactory(8)
       }
@@ -133,22 +113,18 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes:  [
       {
-        //@ts-expect-error type showing up wrong
         name: "body",
         ...maxMinFactory(9)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "agility",
         ...maxMinFactory(5)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "strength",
         ...maxMinFactory(9)
       },
       {
-        //@ts-expect-error type showing up wrong
         name: "charisma",
         ...maxMinFactory(5)
       }

@@ -6,3 +6,5 @@ export const convertIntIntoNuyen = (value: number) => {
 
   return formatter.format(value)
 }
+
+export default convertIntIntoNuyen

@@ -10,12 +10,12 @@ type AttributeNames = AttributeCoreNames | SpecialAttributes |"edge"
 type AttributesCore = { [key in AttributeCoreNames]: number }
 
 type Attribute = {
-    name: keyof AttributeNames,
-    adjustment: number,
-    augmented: number,
-    base: number,
-    max: number,
-    min: number,
+  name: string,
+  adjustment: number,
+  augmented: number,
+  base: number,
+  max: number,
+  min: number,
 }
 
 type Attributes = {
@@ -33,7 +33,7 @@ type Attributes = {
 }
 
 type AttributesBase = {
-  name: keyof AttributeNames,
+  name: string,
   base: number
 }
 
@@ -46,7 +46,7 @@ type History = {
 }
 
 type MetatypeAttribute = {
-  name: keyof AttributeNames,
+  name: string,
   max: number,
   min: number,
 }

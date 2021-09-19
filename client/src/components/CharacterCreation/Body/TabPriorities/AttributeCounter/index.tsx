@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { EuiButtonIcon, EuiText } from '@elastic/eui'
 import { useRecoilState } from 'recoil'
 
@@ -9,11 +10,18 @@ const AttributeCounter = ({
   atom,
   attribute,
   disableInputs = false,
+  metaMax,
   maxed = false,
-  minMax
+  metaMin,
 }: AttributeSelectProps) => {
-  const { min, max } = minMax
-  const [score, setScore] = useRecoilState<number>(ATOM.characterAttribute(`${atom}`))
+  const [ score, setScore ] = useRecoilState<number>(ATOM.characterAttribute(`${atom}`))
+  const [ max, setMax ] = useRecoilState<number>(ATOM.characterAttribute(`${attribute.toUpperCase()}_MAX`))
+
+  useEffect(() => {
+    if ( metaMax ) {
+      setMax(metaMax)
+    }
+  })
 
   const onIncrease = () => {
     const increase = score + 1
@@ -26,7 +34,7 @@ const AttributeCounter = ({
   const onDecrease = () => {
     const decrease = score - 1
 
-    if( decrease >= min ) {
+    if( decrease >= metaMin ) {
       setScore(decrease)
     }
 
@@ -51,7 +59,7 @@ const AttributeCounter = ({
         </EuiText>
         <EuiButtonIcon 
           aria-label={`decrease ${attribute}`}
-          isDisabled={score === min}
+          isDisabled={score === metaMin}
           iconType="arrowDown" 
           onClick={onDecrease}
         /> 
@@ -65,7 +73,8 @@ type AttributeSelectProps = {
   attribute: AttributeNames,
   disableInputs?: boolean
   maxed: boolean,
-  minMax: MinMax
+  metaMax: number,
+  metaMin: number,
 }
 
 export default AttributeCounter
