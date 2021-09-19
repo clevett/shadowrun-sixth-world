@@ -9,6 +9,20 @@ type AttributeNames = AttributeCoreNames | SpecialAttributes |"edge"
 
 type AttributesCore = { [key in AttributeCoreNames]: number }
 
+type Attribute = {
+    name: keyof AttributeNames,
+    adjustment: number,
+    augmented: number,
+    base: number,
+    max: number,
+    min: number,
+}
+
+type AttributesBase = {
+  name: keyof AttributeNames,
+  base: number
+}
+
 type Attributes<T = MinMax> = {
   agility: MinMax,
   body: MinMax, 

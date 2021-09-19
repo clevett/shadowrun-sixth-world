@@ -1,7 +1,5 @@
 import { TYPES as MAGIC_TYPES } from "./special"
 
-export const KEYS = [ "A", "B", "C", "D", "E"]
-
 export const OPTIONS: {[key:string]: PrioritiesNames} = {
   attributes: "Attributes",
   adjustment: "Adjustment Points",
@@ -86,6 +84,7 @@ export const SPECIAL: Special[] = [
   },
 ]
 
+export const KEYS = [ "A", "B", "C", "D", "E"]
 
 export const VALUES: PrioritiesNumerical[] = [
   {

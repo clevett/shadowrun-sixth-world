@@ -6,13 +6,14 @@ import { ATOM } from '../../../../../recoil'
 import "./styles.sass"
 
 const AttributeCounter = ({
+  atom,
   attribute,
   disableInputs = false,
   maxed = false,
   minMax
 }: AttributeSelectProps) => {
   const { min, max } = minMax
-  const [score, setScore] = useRecoilState<number>(ATOM.characterAttribute(`${attribute.toUpperCase()}`))
+  const [score, setScore] = useRecoilState<number>(ATOM.characterAttribute(`${atom}`))
 
   const onIncrease = () => {
     const increase = score + 1
@@ -60,6 +61,7 @@ const AttributeCounter = ({
 }
 
 type AttributeSelectProps = {
+  atom: string,
   attribute: AttributeNames,
   disableInputs?: boolean
   maxed: boolean,

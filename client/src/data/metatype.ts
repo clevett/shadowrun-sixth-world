@@ -1,17 +1,29 @@
 
 import { ADJUSTMENT_POINTS } from './priorities'
-import { attributeFactory, maxMinFactory } from "./helpers"
+import { attributeFactory } from "./helpers"
+import { ATTRIBUTE_LIST_SPECIAL } from "./special"
 
 export const ATTRIBUTES_LIST: AttributeNames[] = ["body", "agility", "strength", "reaction", "willpower", "logic", "intuition", "charisma",]
 
 export const ATTRIBUTES_LIST_WITH_EDGE: AttributeNames[] = [...ATTRIBUTES_LIST, "edge"]
 
-export const ATTRIBUTE_LIST_SPECIAL: AttributeNames[] = ["edge", "magic", "resonance"]
+export const ATTRIBUTES_LIST_WITH_SPECIAL = [
+  ...ATTRIBUTES_LIST_WITH_EDGE,
+   ...ATTRIBUTE_LIST_SPECIAL
+]
 
 export const ATTRIBUTES_DEFAULTS = {
-  ...attributeFactory(ATTRIBUTES_LIST_WITH_EDGE), 
-  magic: maxMinFactory(6, 0), 
-  resonance: maxMinFactory(6, 0) 
+  body: attributeFactory(),
+  agility: attributeFactory(),
+  strength: attributeFactory(),
+  reaction: attributeFactory(),
+  willpower: attributeFactory(),
+  logic: attributeFactory(),
+  intuition: attributeFactory(),
+  edge: attributeFactory(),
+  charisma: attributeFactory(),
+  magic: attributeFactory(6, 0), 
+  resonance: attributeFactory(6, 0) 
 }
 
 export const METATYPES = {
@@ -40,7 +52,7 @@ export const ATTRIBUTES: Metatype[] = [
     },
     attributes: {
       ...ATTRIBUTES_DEFAULTS,
-      edge: maxMinFactory(7),
+      edge: attributeFactory(7),
     },
     qualities: QUALITIES.human,
   },
@@ -49,10 +61,10 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes: {
       ...ATTRIBUTES_DEFAULTS,
-      body: maxMinFactory(7),
-      reaction: maxMinFactory(5),
-      strength: maxMinFactory(8),
-      willpower: maxMinFactory(7),
+      body: attributeFactory(7),
+      reaction: attributeFactory(5),
+      strength: attributeFactory(8),
+      willpower: attributeFactory(7),
     },
     qualities: QUALITIES.dwarf,
   },
@@ -60,8 +72,8 @@ export const ATTRIBUTES: Metatype[] = [
     name: METATYPES.elf,
     attributes: { 
       ...ATTRIBUTES_DEFAULTS,
-      agility: maxMinFactory(7),
-      charisma: maxMinFactory(8) 
+      agility: attributeFactory(7),
+      charisma: attributeFactory(8) 
     },
     adjustment_points: {
       ...ADJUSTMENT_POINTS,
@@ -74,9 +86,9 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes: {
       ...ATTRIBUTES_DEFAULTS,
-      body: maxMinFactory(8),
-      charisma: maxMinFactory(5),
-      strength: maxMinFactory(8),
+      body: attributeFactory(8),
+      charisma: attributeFactory(5),
+      strength: attributeFactory(8),
     },
     qualities: QUALITIES.ork,
   },
@@ -85,10 +97,10 @@ export const ATTRIBUTES: Metatype[] = [
     adjustment_points: ADJUSTMENT_POINTS,
     attributes: { 
       ...ATTRIBUTES_DEFAULTS,
-      agility: maxMinFactory(5),
-      body: maxMinFactory(9),
-      charisma: maxMinFactory(5),
-      strength: maxMinFactory(9),
+      agility: attributeFactory(5),
+      body: attributeFactory(9),
+      charisma: attributeFactory(5),
+      strength: attributeFactory(9),
     },
     qualities: QUALITIES.troll,
   },

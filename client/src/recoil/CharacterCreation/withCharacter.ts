@@ -13,7 +13,7 @@ export const GET_CHARACTER = selector({
   get: ({get}) => {
     return {
       id: 1,
-      attributes: get(WITH_ATTRIBUTES.GET_ALL_CHARACTER_ATTRIBUTES),
+      attributes: get(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES),
       history: { 
         ...get(WITH_HISTORY.CHARACTER_CREATION_HISTORY), 
         ...{outlook: get(WITH_HISTORY.CHARACTER_CREATION_OUTLOOK)}

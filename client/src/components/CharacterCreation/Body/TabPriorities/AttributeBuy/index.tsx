@@ -5,8 +5,8 @@ import { WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 import { METATYPE } from '../../../../../data'
 
 import AttributeCounter from '../AttributeCounter'
-import { getPriorityValue, totalArrayNumbers } from "../helpers"
-import { checkMaxAttributes } from "./helpers"
+import { getPriorityValue } from "../helpers"
+import { checkMaxAttributes, totalBaseValues } from "./helpers"
 
 import "./styles.sass"
 
@@ -15,15 +15,16 @@ const AttributeBuy = ({
 }: AttributeBuyProps) => {
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
   const attributePoints = getPriorityValue(priorities)
-  const characterAttributesValues = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES)
+  const allAttributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES) as Attribute[]
+  const baseValues = allAttributes.map(( { name, base } ) => ( { name, base } )) as AttributesBase[]
 
   if(!attributePoints) {
     return null
   }
 
-  const maxAttributes = checkMaxAttributes(attributes, characterAttributesValues)
+  const maxAttributes = checkMaxAttributes(allAttributes)
 
-  const total: number = totalArrayNumbers( Object.values(characterAttributesValues) as number[] )
+  const total: number = totalBaseValues( baseValues )
   const totalMinusEight = total - 8
 
   const calculatePointsSpent = totalMinusEight === attributePoints
@@ -39,7 +40,8 @@ const AttributeBuy = ({
         {
           METATYPE.ATTRIBUTES_LIST.map(attribute => {
             return(
-              <AttributeCounter 
+              <AttributeCounter
+                atom={`${attribute.toUpperCase()}_BASE`}
                 attribute={(attribute as AttributeNames)}
                 disableInputs={calculatePointsSpent}
                 key={`attribute-buy-${attribute}`}

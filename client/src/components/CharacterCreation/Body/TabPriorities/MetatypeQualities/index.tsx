@@ -7,7 +7,7 @@ import { EuiText } from '@elastic/eui'
 const MetatypeQualities = ({
   metatypeData
 }: MetatypeQualitiesProps) => {
-  const getQualityText = (quality: string) => <EuiText size="s">{quality}</EuiText>
+  const getQualityText = (quality: string) => <EuiText key={`metatype-quality-${quality}`} size="s">{quality}</EuiText>
 
   const qualities = () => {
     if(metatypeData?.qualities) {
