@@ -1,14 +1,8 @@
-import { PRIORITIES, SPECIAL } from '../../../../../../data'
+import getSpecialAttribute from './getSpecialAttribute'
 import getAttributesOverSix from '../../AttributeBuy/helpers/getAttributesOverSix'
 
-export const getSpecialAttribute = ( special: string ) => {
-  if (special !== SPECIAL.TYPES.mundane) {
-    const specialType = PRIORITIES.SPECIAL.find(specialType => specialType.name === special)
-    return specialType?.attribute
-  }
-}
 
-export const getAdjustmentAttributesList = (
+const getAdjustmentAttributesList = (
   special: string,
   attributes: MetatypeAttribute[]
 ) => {
@@ -23,3 +17,5 @@ export const getAdjustmentAttributesList = (
 
   return attributeList
 }
+
+export default getAdjustmentAttributesList

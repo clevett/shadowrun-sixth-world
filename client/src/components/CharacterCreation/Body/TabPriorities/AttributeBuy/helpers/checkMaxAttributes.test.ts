@@ -18,18 +18,25 @@ describe("GIVEN checkMaxAttributes is called", () => {
         base: 0,
         max: 6,
         min: 0,
+      },
+      {
+        name: "magic",
+        adjustment: 0,
+        augmented: 0,
+        base: 6,
+        max: 6,
+        min: 0,
       }
-    
     ]
 
-    it("THEN includes special (magic) attribute", () => {
+    it("THEN attributes that are at their max", () => {
       const result = checkMaxAttributes(attributes)
-      expect( result ).toEqual('magic')
+      expect( result ).toEqual(["body"])
     })
 
-    it("THEN includes special (resonance) attribute", () => {
+    it("THEN it does not include special attributes at their max", () => {
       const result = checkMaxAttributes(attributes)
-      expect( result ).toEqual('resonance')
+      expect( result ).toEqual(expect.not.arrayContaining(["magic"]))
     })
   })
 })

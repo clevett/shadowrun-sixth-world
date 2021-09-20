@@ -1,23 +1,5 @@
 import { SPECIAL } from '../../../../../../data'
-
-import { 
-  getAdjustmentAttributesList,
-  getSpecialAttribute
-} from "./index"
-
-describe("GIVEN getAdjustmentAttributesList is called WHEN special is not mundane", () => {
-  describe("WHEN special is not mundane", () => {
-    it("THEN includes special (magic) attribute", () => {
-      const result = getSpecialAttribute(SPECIAL.TYPES.full)
-      expect( result ).toEqual('magic')
-    })
-
-    it("THEN includes special (resonance) attribute", () => {
-      const result = getSpecialAttribute(SPECIAL.TYPES.technomancer)
-      expect( result ).toEqual('resonance')
-    })
-  })
-})
+import getAdjustmentAttributesList from './getAdjustmentAttributesList'
 
 describe("GIVEN getAdjustmentAttributesList is called", () => {
   describe("WHEN special is mundane", () => {

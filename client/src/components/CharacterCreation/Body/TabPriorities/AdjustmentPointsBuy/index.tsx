@@ -10,7 +10,7 @@ import {
 
 import AttributeCounter from '../AttributeCounter'
 import { findPriorityKey } from "../PriorityTable/PriorityCell/helpers"
-import { getAdjustmentAttributesList } from "./helpers"
+import getAdjustmentAttributesList from "./helpers/getAdjustmentAttributesList"
 
 const AdjustmentPointsBuy = () => {
   const special = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
