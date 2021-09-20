@@ -1,24 +1,22 @@
 import { useEffect } from 'react'
 import { EuiSpacer, EuiTitle } from '@elastic/eui'
-import { useRecoilState, useRecoilValue } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 
-import { CHARACTER_ATTRIBUTES, CHARACTER_PRIORITIES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
+import { CHARACTER_ATTRIBUTES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 
-import AttributeCounter from '../AttributeCounter'
 import checkMaxAttributes from "./helpers/checkMaxAttributes"
-import findMaxExceptions from "../helpers/findMaxExceptions"
 import getPriorityValue from "../helpers/getPriorityValue"
 import totalBaseValues from "./helpers/totalBaseValues"
 
 import "./styles.sass"
+import Attribute from './Attribute'
 
 const AttributeBuy = () => {
-  const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
 
   const attributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_CORE_ATTRIBUTES) as Attribute[]
 
-  const [ attributeAtMax, setAttributeAtMax ] = useRecoilState(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
+  const  setAttributeAtMax = useSetRecoilState(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
 
   useEffect(() => {
     setAttributeAtMax( checkMaxAttributes(attributes) )
@@ -45,18 +43,10 @@ const AttributeBuy = () => {
       <div>
         {
           attributes.map(attribute => {
-            const exceptions = findMaxExceptions( metatype.attributes, attribute.name )
-            const max = exceptions && exceptions.name !== "edge" && exceptions.max
-
-            return(
-              <AttributeCounter
-                atom={`${attribute.name.toUpperCase()}_BASE`}
-                attribute={(attribute.name as AttributeNames)}
+            return (
+              <Attribute 
+                attribute={attribute}
                 disableInputs={calculatePointsSpent}
-                key={`attribute-buy-${attribute.name}`}
-                metaMax={max ? max : attribute.max}
-                metaMin={attribute.min}
-                maxed={attributeAtMax.length > 1 && attributeAtMax.includes(attribute.name)}
               />
             )
           } )

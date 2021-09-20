@@ -1,36 +1,32 @@
 import { EuiForm, EuiTitle } from '@elastic/eui'
 import { useRecoilValue } from 'recoil'
 
-import { ATTRIBUTES, PRIORITIES } from '../../../../../data'
-import { 
-  CHARACTER_ATTRIBUTES, 
-  CHARACTER_PRIORITIES, 
-  WITH_ATTRIBUTES, 
-  WITH_PRIORITIES 
-} from '../../../../../recoil'
+import { ATTRIBUTES } from '../../../../../data'
+import { CHARACTER_PRIORITIES, WITH_ATTRIBUTES, WITH_PRIORITIES } from '../../../../../recoil'
 
-import AttributeCounter from '../AttributeCounter'
-import { findPriorityKey } from "../PriorityTable/PriorityCell/helpers"
-import getAdjustmentAttributesList from "./helpers/getAdjustmentAttributesList"
-import findMaxExceptions from "../helpers/findMaxExceptions"
+import getPriorityValue from "../helpers/getPriorityValue"
 import totalAdjustmentValues from '../AttributeBuy/helpers/totalAdjustmentValues'
+import Attribute from './Attribute'
+import AttributeEdge from './AttributeEdge'
+import AttributeSpecial from './AttributeSpecial'
 
 const AdjustmentPointsBuy = () => {
-  const special = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
   const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
-
-  const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
-  const adjustmentPriorityLetter = findPriorityKey(priorities, PRIORITIES.OPTIONS.adjustment)
-  const adjustmentPoints = adjustmentPriorityLetter && PRIORITIES.ADJUSTMENT_POINTS[adjustmentPriorityLetter]
-
-  const maxAttributes = useRecoilValue(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
-
-  const attributeList = getAdjustmentAttributesList(special.name, metatype.attributes)
-
   const attributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES) as Attribute[]
+  const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
+
+  let specialAttributes: Attribute[] = []
+  metatype.attributes.forEach((metaAttribute) => {
+    if(ATTRIBUTES.ATTRIBUTES_LIST.includes( metaAttribute.name ) && metaAttribute.max > 6) {
+      const findMetatypeSpecials = attributes.find(attribute => attribute.name === metaAttribute.name)
+      findMetatypeSpecials && specialAttributes.push(findMetatypeSpecials)
+    }
+  })
+
+  const adjustmentPoints = getPriorityValue(priorities)
   const adjustValues = attributes.map(( { name, adjustment } ) => ( { name, adjustment } ))
 
-  const total: number = totalAdjustmentValues( adjustValues ) - 1
+  const total: number = totalAdjustmentValues( adjustValues )
 
   const calculatePointsSpent = total === adjustmentPoints
   
@@ -42,22 +38,36 @@ const AdjustmentPointsBuy = () => {
         </h2>
       </EuiTitle>
       {
-        attributeList.map((attribute) => {
-          const exceptions = findMaxExceptions(metatype.attributes, attribute)
-          const max = exceptions && !ATTRIBUTES.ATTRIBUTES_LIST.includes(exceptions.name) && exceptions.max
-
-          return(
-            <AttributeCounter
-              atom={`${attribute.toUpperCase()}_ADJUSTMENT`}
-              attribute={(attribute as AttributeNames)}
-              disableInputs={calculatePointsSpent}
-              key={`adjustment-buy-${attribute}`}
-              metaMax={max ? max : 6}
-              metaMin={1}
-              maxed={maxAttributes.length > 1 && maxAttributes.includes(attribute)}
-            />
-          )
-        } )
+        attributes.map((attribute) => {
+          switch(attribute.name) {
+            case "edge":
+              return (
+                <AttributeEdge
+                  attribute={attribute}
+                  disableInputs={calculatePointsSpent}
+                  key={`adjustment-buy-${attribute.name}`}
+                />
+              )
+            case "magic":
+            case "resonance":
+              return (
+                <AttributeSpecial
+                  attribute={attribute}
+                  disableInputs={calculatePointsSpent}
+                  key={`adjustment-buy-${attribute.name}`}
+                />
+              )
+            default:
+              return (
+                <Attribute
+                  attribute={attribute}
+                  disableInputs={calculatePointsSpent}
+                  key={`adjustment-buy-${attribute.name}`}
+                  adjustableAttributes={specialAttributes}
+                />
+              )
+          }
+        })
       }
     </EuiForm>
   )

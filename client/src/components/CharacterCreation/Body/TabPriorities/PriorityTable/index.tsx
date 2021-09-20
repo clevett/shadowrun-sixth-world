@@ -1,4 +1,4 @@
-import { useSetRecoilState } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import { EuiDataGrid, EuiTextAlign } from '@elastic/eui';
 
 import { PRIORITIES } from "../../../../../data"
@@ -15,9 +15,8 @@ import PriorityCell from './PriorityCell'
 
 import "./styles.sass"
 
-const PriorityTable = ({
-  metatype
-}: PriorityTableProps) => {
+const PriorityTable = () => {
+  const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const setA = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_A)
   const setB = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_B)
   const setC = useSetRecoilState(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_C)
@@ -100,10 +99,6 @@ const PriorityTable = ({
       }}
     />
   )
-}
-
-type PriorityTableProps = {
-  metatype: Metatype
 }
 
 export default PriorityTable

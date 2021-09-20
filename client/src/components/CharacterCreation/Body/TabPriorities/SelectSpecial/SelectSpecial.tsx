@@ -12,7 +12,6 @@ const SelectSpecial = () => {
   const [ specialName, setSpecialName ] = useState(SPECIAL.TYPES.mundane)
 
   const getSpecialOptions = SPECIAL.ATTRIBUTES.map(special => ( buildOption(special.name) ))
-  const specialOptions = [ ...getSpecialOptions, buildOption("mundane") ]
 
   useEffect(() => {
     const specialData = findSpecialData(specialName) as Special
@@ -28,7 +27,7 @@ const SelectSpecial = () => {
       <EuiSelect
         className="text-transform-capitalize"
         onChange={( { target } ) => setSpecialName(target.value)}
-        options={specialOptions}
+        options={getSpecialOptions}
         value={specialName}
       />
     </EuiFormRow>

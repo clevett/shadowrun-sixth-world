@@ -135,7 +135,7 @@ export const GET_CHARACTER_ATTRIBUTE_MAGIC = selector({
       name: 'magic',
       adjustment: get( CHARACTER_ATTRIBUTES.adjustment(`MAGIC`) ),
       augmented: get( CHARACTER_ATTRIBUTES.augmented(`MAGIC`) ),
-      base: get( CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTE_MAGIC_BASE ),
+      base: get( CHARACTER_ATTRIBUTES.base(`MAGIC`, 0) ),
       max: get( CHARACTER_ATTRIBUTES.max(`MAGIC`) ),
       min: get( CHARACTER_ATTRIBUTES.min(`MAGIC`) ),
     }
@@ -149,7 +149,7 @@ export const GET_CHARACTER_ATTRIBUTE_RESONANCE = selector({
       name: 'resonance',
       adjustment: get( CHARACTER_ATTRIBUTES.adjustment(`RESONANCE`) ),
       augmented: get( CHARACTER_ATTRIBUTES.augmented(`RESONANCE`) ),
-      base: get( CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTE_RESONANCE_BASE ),
+      base: get( CHARACTER_ATTRIBUTES.base(`RESONANCE`, 0) ),
       max: get( CHARACTER_ATTRIBUTES.max(`RESONANCE`) ),
       min: get( CHARACTER_ATTRIBUTES.min(`RESONANCE`) ),
     }

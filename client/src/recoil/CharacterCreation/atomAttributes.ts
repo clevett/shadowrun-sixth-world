@@ -2,9 +2,9 @@ import { atom } from "recoil"
 import memoize from '../../utilities/memoize'
 import { ATTRIBUTES_DEFAULTS } from '../../data/metatype'
 
-export const base = memoize(( id: string ) => atom({
+export const base = memoize(( id: string, value = 1 ) => atom({
   key:`CHARACTER_ATTRIBUTE_${id}_BASE`,
-  default: 1
+  default: value
 }))
 
 export const adjustment = memoize(( id: string ) => atom({
@@ -30,16 +30,6 @@ export const max = memoize(( id: string ) => atom({
 export const CHARACTER_ATTRIBUTE_EDGE_BASE = atom({
   key: 'CHARACTER_ATTRIBUTE_EDGE_BASE',
   default: ATTRIBUTES_DEFAULTS["edge"].base
-})
-
-export const CHARACTER_ATTRIBUTE_MAGIC_BASE = atom({
-  key: 'CHARACTER_ATTRIBUTE_MAGIC_BASE',
-  default: ATTRIBUTES_DEFAULTS["magic"].base
-})
-
-export const CHARACTER_ATTRIBUTE_RESONANCE_BASE = atom({
-  key: 'CHARACTER_ATTRIBUTE_RESONANCE_BASE',
-  default: ATTRIBUTES_DEFAULTS["resonance"].base
 })
 
 export const CHARACTER_ATTRIBUTES_AT_MAX = atom({

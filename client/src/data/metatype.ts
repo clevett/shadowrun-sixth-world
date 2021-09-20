@@ -50,11 +50,11 @@ export const ATTRIBUTES: Metatype[] = [
       },
       {
         name: "strength",
-        ...maxMinFactory(5)
+        ...maxMinFactory(8)
       },
       {
         name: "reaction",
-        ...maxMinFactory(8)
+        ...maxMinFactory(5)
       },
       {
         name: "willpower",
@@ -91,11 +91,11 @@ export const ATTRIBUTES: Metatype[] = [
       },
       {
         name: "strength",
-        ...maxMinFactory(5)
+        ...maxMinFactory(8)
       },
       {
         name: "charisma",
-        ...maxMinFactory(8)
+        ...maxMinFactory(5)
       }
     ],
     qualities: ["Low-light Vision", "Built Tough 1"],

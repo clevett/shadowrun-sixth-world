@@ -1,8 +1,8 @@
-import { useEffect } from "react"
 import { EuiButtonIcon, EuiText } from '@elastic/eui'
-import { useRecoilState } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
-import { ATOM } from '../../../../../recoil'
+import { ATOM, CHARACTER_ATTRIBUTES } from '../../../../../recoil'
 
 import "./styles.sass"
 
@@ -10,18 +10,18 @@ const AttributeCounter = ({
   atom,
   attribute,
   disableInputs = false,
-  metaMax,
-  maxed = false,
-  metaMin,
 }: AttributeSelectProps) => {
+  const min = useRecoilValue<number>( CHARACTER_ATTRIBUTES.min(attribute.toUpperCase()) )
+  const max = useRecoilValue<number>( CHARACTER_ATTRIBUTES.max(attribute.toUpperCase()) )
+  const attributeAtMax = useRecoilValue(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
   const [ score, setScore ] = useRecoilState<number>(ATOM.characterAttribute(`${atom}`))
-  const [ max, setMax ] = useRecoilState<number>(ATOM.characterAttribute(`${attribute.toUpperCase()}_MAX`))
 
   useEffect(() => {
-    if ( metaMax ) {
-      setMax(metaMax)
+    console.log(max)
+    if (score >= max) {
+      setScore(max)
     }
-  })
+  }, [ max ])
 
   const onIncrease = () => {
     const increase = score + 1
@@ -34,12 +34,13 @@ const AttributeCounter = ({
   const onDecrease = () => {
     const decrease = score - 1
 
-    if( decrease >= metaMin ) {
+    if( decrease >= min ) {
       setScore(decrease)
     }
 
   }
 
+  const maxed = attributeAtMax.length > 1 && attributeAtMax.includes(attribute)
   const textColorWhenMax = maxed ? "warning" : score === max ? "success" : "default"
 
   return(
@@ -59,7 +60,7 @@ const AttributeCounter = ({
         </EuiText>
         <EuiButtonIcon 
           aria-label={`decrease ${attribute}`}
-          isDisabled={score === metaMin}
+          isDisabled={score === min}
           iconType="arrowDown" 
           onClick={onDecrease}
         /> 
@@ -72,9 +73,6 @@ type AttributeSelectProps = {
   atom: string,
   attribute: AttributeNames,
   disableInputs?: boolean
-  maxed: boolean,
-  metaMax: number,
-  metaMin: number,
 }
 
 export default AttributeCounter
