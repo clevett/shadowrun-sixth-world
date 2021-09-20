@@ -17,19 +17,11 @@ export const ATTRIBUTES_DEFAULTS = {
 }
 
 export const METATYPES = {
-  dwarf: "dwarf",
-  elf: "elf",
-  human: "human",
-  ork: "ork",
-  troll: "troll",
-}
-
-export const QUALITIES = {
-  dwarf: ["Toxin Resistance", "Thermographic Vision"],
-  elf: ["Low-light Vision"],
-  human: null,
-  ork: ["Low-light Vision", "Built Tough 1"],
-  troll: ["Dermal Deposits", "Thermographic Vision", "Built Tough 2"],
+  "dwarf": "dwarf",
+  "elf": "elf",
+  "human": "human",
+  "ork": "ork",
+  "troll": "troll",
 }
 
 export const ATTRIBUTES: Metatype[] = [
@@ -46,7 +38,7 @@ export const ATTRIBUTES: Metatype[] = [
         ...maxMinFactory(7)
       },
   ],
-    qualities: QUALITIES.human,
+    qualities: null,
   },
   {
     name: METATYPES.dwarf,
@@ -69,7 +61,7 @@ export const ATTRIBUTES: Metatype[] = [
         ...maxMinFactory(7)
       }
     ],
-    qualities: QUALITIES.dwarf,
+    qualities: ["Toxin Resistance", "Thermographic Vision"],
   },
   {
     name: METATYPES.elf,
@@ -87,7 +79,7 @@ export const ATTRIBUTES: Metatype[] = [
       ...ADJUSTMENT_POINTS,
       A: null,
     },
-    qualities: QUALITIES.elf,
+    qualities: ["Low-light Vision"],
   },
   {
     name: METATYPES.ork,
@@ -106,7 +98,7 @@ export const ATTRIBUTES: Metatype[] = [
         ...maxMinFactory(8)
       }
     ],
-    qualities: QUALITIES.ork,
+    qualities: ["Low-light Vision", "Built Tough 1"],
   },
   {
     name: METATYPES.troll,
@@ -129,7 +121,7 @@ export const ATTRIBUTES: Metatype[] = [
         ...maxMinFactory(5)
       }
     ],
-    qualities: QUALITIES.troll,
+    qualities: ["Dermal Deposits", "Thermographic Vision", "Built Tough 2"],
   },
 ]
 
