@@ -9,7 +9,7 @@ export const CHARACTER_CREATION_PRIORITY_METATYPE = atom({
 
 export const CHARACTER_CREATION_PRIORITY_SPECIAL = atom({
   key: 'CHARACTER_CREATION_PRIORITY_SPECIAL',
-  default: SPECIAL.TYPES.mundane
+  default: SPECIAL.defaultAttribute
 })
 
 export const CHARACTER_CREATION_PRIORITY_A = atom({

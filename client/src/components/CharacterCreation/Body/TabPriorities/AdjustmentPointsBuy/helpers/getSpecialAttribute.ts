@@ -1,8 +1,8 @@
-import { PRIORITIES, SPECIAL } from '../../../../../../data'
+import { SPECIAL } from '../../../../../../data'
 
 const getSpecialAttribute = ( special: string ) => {
   if (special !== SPECIAL.TYPES.mundane) {
-    const specialType = PRIORITIES.SPECIAL.find(specialType => specialType.name === special)
+    const specialType = SPECIAL.ATTRIBUTES.find(specialType => specialType.name === special)
     return specialType?.attribute
   }
 }

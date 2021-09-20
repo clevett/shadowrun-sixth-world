@@ -3,13 +3,15 @@ import getAttributesOverSix from '../../AttributeBuy/helpers/getAttributesOverSi
 
 
 const getAdjustmentAttributesList = (
-  special: string,
+  special: string | null,
   attributes: MetatypeAttribute[]
 ) => {
   let attributeList: string[] = []
 
-  const specialAttribute = getSpecialAttribute(special)
-  specialAttribute && attributeList.push(specialAttribute)
+  if ( special ) {
+    const specialAttribute = getSpecialAttribute(special)
+    specialAttribute && attributeList.push(specialAttribute)
+  }
 
   getAttributesOverSix(attributes).forEach(attribute => attributeList.push(attribute))
 

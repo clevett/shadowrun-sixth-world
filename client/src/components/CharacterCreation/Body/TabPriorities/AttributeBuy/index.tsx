@@ -5,22 +5,19 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import { CHARACTER_ATTRIBUTES, CHARACTER_PRIORITIES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 
 import AttributeCounter from '../AttributeCounter'
+import checkMaxAttributes from "./helpers/checkMaxAttributes"
+import findMaxExceptions from "../helpers/findMaxExceptions"
 import getPriorityValue from "../helpers/getPriorityValue"
 import totalBaseValues from "./helpers/totalBaseValues"
 
-import checkMaxAttributes from "./helpers/checkMaxAttributes"
-
-
 import "./styles.sass"
-import { ATTRIBUTES } from '../../../../../data'
 
 const AttributeBuy = () => {
   const metatype = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE)
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
 
-  const attributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_ATTRIBUTES) as Attribute[]
-  const filterSpecialAttributes = attributes.filter(attribute => !ATTRIBUTES.ADJUSTMENT_LIST.includes(attribute.name) )
-  
+  const attributes = useRecoilValue(WITH_ATTRIBUTES.GET_CHARACTER_CORE_ATTRIBUTES) as Attribute[]
+
   const [ attributeAtMax, setAttributeAtMax ] = useRecoilState(CHARACTER_ATTRIBUTES.CHARACTER_ATTRIBUTES_AT_MAX)
 
   useEffect(() => {
@@ -47,9 +44,9 @@ const AttributeBuy = () => {
       </EuiTitle>
       <div>
         {
-          filterSpecialAttributes.map(attribute => {
-            const findMaxExceptions = metatype.attributes.find(metaAttribute => metaAttribute.name === attribute.name )
-            const max = findMaxExceptions && findMaxExceptions.name !== "edge" && findMaxExceptions.max
+          attributes.map(attribute => {
+            const exceptions = findMaxExceptions( metatype.attributes, attribute.name )
+            const max = exceptions && exceptions.name !== "edge" && exceptions.max
 
             return(
               <AttributeCounter

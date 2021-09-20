@@ -19,7 +19,7 @@ const PriorityCell = ({
   const fillButton = priorities[priorityLetter] === columnName
   const columnNameIsSpecial = columnName === PRIORITIES.OPTIONS.special
   const priorityLetterIsE = priorityLetter === "E"
-  const characterIsMundane = special === SPECIAL.TYPES.mundane
+  const characterIsMundane = special.name === SPECIAL.TYPES.mundane
 
   const handleChange = () => {
     const previousKey = findPriorityKey(priorities, columnName)

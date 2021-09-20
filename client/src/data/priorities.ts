@@ -1,5 +1,3 @@
-import { TYPES as MAGIC_TYPES } from "./special"
-
 export const OPTIONS: {[key:string]: PrioritiesNames} = {
   attributes: "Attributes",
   adjustment: "Adjustment Points",
@@ -55,34 +53,6 @@ export const SPECIAL_POINTS_ASPECTED: Priorities = {
   D: 2, 
   E: 0 
 }
-
-export const SPECIAL: Special[] = [
-  {
-    name: MAGIC_TYPES.full,
-    priorities: SPECIAL_POINTS_DEFAULT,
-    attribute: "magic"
-  },
-  {
-    name: MAGIC_TYPES.aspected,
-    priorities: SPECIAL_POINTS_ASPECTED,
-    attribute: "magic"
-  },
-  {
-    name: MAGIC_TYPES.mystic,
-    priorities: SPECIAL_POINTS_DEFAULT,
-    attribute: "magic"
-  },
-  {
-    name: MAGIC_TYPES.adept,
-    priorities: SPECIAL_POINTS_DEFAULT,
-    attribute: "magic"
-  },
-  {
-    name: MAGIC_TYPES.technomancer,
-    priorities: SPECIAL_POINTS_DEFAULT,
-    attribute: "resonance"
-  },
-]
 
 export const KEYS = [ "A", "B", "C", "D", "E"]
 

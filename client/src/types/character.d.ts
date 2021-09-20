@@ -37,6 +37,11 @@ type AttributesBase = {
   base: number
 }
 
+type AttributesAdjustment = {
+  name: string,
+  adjustment: number
+}
+
 type History = {
   birth: NullableString,
   raised: NullableString,
@@ -79,9 +84,9 @@ interface PrioritiesNumerical extends PrioritiesMap {
 type SpecialAttributes = "magic" | "resonance"
 
 type Special = {
-  name: SpecialTypes,
-  priorities: Priorities,
-  attribute: SpecialAttributes
+  name: string,
+  priorities: Priorities | null,
+  attribute: SpecialAttributes | null
 }
 
 type Character = {
@@ -92,5 +97,6 @@ type Character = {
   name: NullableString,
   outlook: Outlook,
   priorities: Priorities<PrioritiesNames>,
+  special: Special | null,
   role: NullableString,
 }

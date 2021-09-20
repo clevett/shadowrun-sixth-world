@@ -4,17 +4,9 @@ import { PRIORITIES, SPECIAL } from '../../../../../../../data'
 import { CHARACTER_PRIORITIES } from '../../../../../../../recoil'
 import { convertIntIntoNuyen } from '../../../../../helpers'
 
-export const bookMagicString = ( letter: PriorityLetters ) => {
-  const specialStrings = PRIORITIES.SPECIAL.map(({name, priorities, attribute}) => {
-    return `${name}: ${priorities[letter]} ${attribute}`
-  })
-
-  return specialStrings.join(", ")
-}
-
 export const GetSpecialColumnText = ( letter: PriorityLetters ) => {
   const special = useRecoilValue(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL)
-  const findSpecial = PRIORITIES.SPECIAL.find(priority => priority.name === special)
+  const findSpecial = SPECIAL.ATTRIBUTES.find(priority => priority.name === special.name)
 
   if (letter === "E") {
     return SPECIAL.TYPES.mundane
@@ -22,7 +14,10 @@ export const GetSpecialColumnText = ( letter: PriorityLetters ) => {
 
   if (findSpecial) {
     const { priorities, attribute } = findSpecial
-    return `${priorities[letter]} ${attribute}`
+    
+    if(priorities) {
+      return `${priorities[letter]} ${attribute}`
+    }
   }
 
   return "-"
