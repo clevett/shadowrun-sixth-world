@@ -2,7 +2,7 @@
 
 This project was created by [Cassie Levett](http://cassielevett.info/) for Shadowrun Sixth World. All rights to information belong to their respective owners.
 
-## Electronics (Software)
+## Project Goal
 
 Project built to experiment with the following modern web frameworks and libraries.
 
@@ -10,10 +10,6 @@ Project built to experiment with the following modern web frameworks and librari
 - [Recoil](https://recoiljs.org/)
 - [Elastic UI](https://elastic.github.io/eui/)
 - [Typescript](https://www.typescriptlang.org/)
-
-## Project Goal
-
-Create an app using Elastic UI and Recoil to experiment with those libraries.
 
 ### Disclaimer
 
