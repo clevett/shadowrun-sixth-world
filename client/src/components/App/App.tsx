@@ -1,26 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-import { EuiHeader, EuiHeaderSection, EuiHeaderSectionItem, EuiIcon } from '@elastic/eui';
+import { RecoilRoot } from 'recoil';
 
-function App() {
+import '@elastic/eui/dist/eui_theme_light.css';
+import '@elastic/eui/dist/eui_theme_dark.css';
+
+import Header from "../CharacterCreation/Header"
+import Body from "../CharacterCreation/Body"
+
+export const App = () => {
   return (
-    <div className="App">
-      <EuiHeader>
-        <EuiHeaderSection grow={false}>
-          <EuiHeaderSectionItem border="right">
-            <EuiIcon title="current logged in user" type="user" />
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-{/* 
-        <!-- You can render breadcrumbs here using EuiHeaderBreadcrumbs --> */}
-
-        <EuiHeaderSection side="right">
-          <EuiHeaderSectionItem>
-            {/* <!-- HeaderSectionItem content --> */}
-          </EuiHeaderSectionItem>
-        </EuiHeaderSection>
-      </EuiHeader>
-    </div>
+    <RecoilRoot>
+      <Header />
+      <Body />
+    </RecoilRoot>
   );
 }
 

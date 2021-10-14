@@ -1,0 +1,27 @@
+import { selector } from "recoil"
+
+import { CHARACTER_PRIORITIES } from "../index"
+
+export const GET_PRIORITIES = selector({
+  key: 'GET_PRIORITIES',
+  get: ({ get }) => {
+    return {
+      A: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_A),
+      B: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_B),
+      C: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_C),
+      D: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_D),
+      E: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_E),
+    }
+  }
+})
+
+export const GET_CHARACTER_PRIORITIES = selector({
+  key: 'GET_CHARACTER_PRIORITIES',
+  get: ({ get }) => {
+    return {
+      metatype: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_METATYPE),
+      special: get(CHARACTER_PRIORITIES.CHARACTER_CREATION_PRIORITY_SPECIAL),
+      priorities: get(GET_PRIORITIES),
+    }
+  }
+})
