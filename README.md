@@ -8,5 +8,5 @@ Create an app using Elastic UI and Recoil to experiment with those libraries.
 
 ### Disclaimer
 
-This project is unfinshed and will likely remain so. It was an experiment to place with various design and practices.
+This project is unfinshed and will likely remain so. It was an experiment with various design and practices.
 
