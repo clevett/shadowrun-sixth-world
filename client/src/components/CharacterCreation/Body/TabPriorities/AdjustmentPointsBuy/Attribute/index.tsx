@@ -1,7 +1,6 @@
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { ATTRIBUTES } from '../../../../../../data'
+import { useSetRecoilState } from 'recoil'
 
-import { CHARACTER_ATTRIBUTES, WITH_ATTRIBUTES } from '../../../../../../recoil'
+import { CHARACTER_ATTRIBUTES } from '../../../../../../recoil'
 import AttributeCounter from '../../AttributeCounter'
 
 const Attribute = ({

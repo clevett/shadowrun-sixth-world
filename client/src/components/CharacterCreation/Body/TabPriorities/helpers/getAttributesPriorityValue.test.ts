@@ -1,8 +1,8 @@
-import getPriorityValue from "./getPriorityValue"
+import getAttributesPriorityValue from "./getAttributesPriorityValue"
 
 import { METATYPE, PRIORITIES } from '../../../../../data';
 
-describe("GIVEN getPriorityValue is called", () => {
+describe("GIVEN getAttributesPriorityValue is called", () => {
   describe("WHEN passed a list of priorities", () => {
     it("THEN returns the priority where the key matches the letter", () => {
       const priorities = {
@@ -12,7 +12,7 @@ describe("GIVEN getPriorityValue is called", () => {
         D: PRIORITIES.OPTIONS.special,
         E: PRIORITIES.OPTIONS.resources,
       }
-      const result = getPriorityValue( priorities )
+      const result = getAttributesPriorityValue( priorities )
       expect( result ).toEqual(24)
     })
   })

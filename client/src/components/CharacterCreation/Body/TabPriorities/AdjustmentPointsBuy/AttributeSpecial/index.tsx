@@ -18,7 +18,7 @@ const AttributeSpecial = ({
   const priorities = useRecoilValue(WITH_PRIORITIES.GET_PRIORITIES)
   const priorityLetter = findPriorityKey(priorities, PRIORITIES.OPTIONS.special)
 
-  if(!priorityLetter || priorityLetter === "E" || !special.priorities) {
+  if(!priorityLetter || priorityLetter === "E" || !special.priorities || special.attribute !== attribute.name) {
     setBase(0)
     setAdjustment(0)
 

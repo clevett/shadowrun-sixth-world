@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { ATTRIBUTES } from '../../../../../data'
 import { CHARACTER_PRIORITIES, WITH_ATTRIBUTES, WITH_PRIORITIES } from '../../../../../recoil'
 
-import getPriorityValue from "../helpers/getPriorityValue"
+import getAdjustmentPriorityValue from "../helpers/getAdjustmentPriorityValue"
 import totalAdjustmentValues from '../AttributeBuy/helpers/totalAdjustmentValues'
 import Attribute from './Attribute'
 import AttributeEdge from './AttributeEdge'
@@ -23,7 +23,7 @@ const AdjustmentPointsBuy = () => {
     }
   })
 
-  const adjustmentPoints = getPriorityValue(priorities)
+  const adjustmentPoints = getAdjustmentPriorityValue(priorities)
   const adjustValues = attributes.map(( { name, adjustment } ) => ( { name, adjustment } ))
 
   const total: number = totalAdjustmentValues( adjustValues )
