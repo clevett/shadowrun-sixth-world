@@ -17,11 +17,10 @@ const AttributeCounter = ({
   const [ score, setScore ] = useRecoilState<number>(ATOM.characterAttribute(`${atom}`))
 
   useEffect(() => {
-    console.log(max)
     if (score >= max) {
       setScore(max)
     }
-  }, [ max ])
+  }, [ max, score, setScore ])
 
   const onIncrease = () => {
     const increase = score + 1

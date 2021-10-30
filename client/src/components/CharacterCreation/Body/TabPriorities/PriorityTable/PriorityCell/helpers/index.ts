@@ -27,7 +27,7 @@ export const findPriorityByLetter = (letter: PriorityLetters) => {
   return PRIORITIES.VALUES.find(priority => priority.name === letter)
 }
 
-export const getPriorityValue = (columnName: PrioritiesNames, letter: PriorityLetters) => {
+export const getAttributesPriorityValue = (columnName: PrioritiesNames, letter: PriorityLetters) => {
   const priorityValues = findPriorityByLetter(letter)
   return priorityValues && priorityValues[`${columnName}`]
 }
@@ -37,7 +37,7 @@ export const getRowValue = (columnName: PrioritiesNames, letter: PriorityLetters
     return GetSpecialColumnText(letter)
   }
 
-  const priorityValue = getPriorityValue(columnName, letter)
+  const priorityValue = getAttributesPriorityValue(columnName, letter)
   if (!priorityValue) {
     return "Unable find value"
   }

@@ -17,7 +17,7 @@ const SummarySidebar = () => {
   const listItems = [
     {
       title: character.name,
-      description: `${character.role} (${character.metatype})`,
+      description: `${character.role} (${character.metatype.name})`,
     },
     {
       title: "Priority",

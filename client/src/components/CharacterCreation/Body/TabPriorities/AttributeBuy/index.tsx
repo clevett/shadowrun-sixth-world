@@ -5,7 +5,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil"
 import { CHARACTER_ATTRIBUTES, WITH_ATTRIBUTES, WITH_PRIORITIES } from "../../../../../recoil"
 
 import checkMaxAttributes from "./helpers/checkMaxAttributes"
-import getPriorityValue from "../helpers/getPriorityValue"
+import getAttributesPriorityValue from "../helpers/getAttributesPriorityValue"
 import totalBaseValues from "./helpers/totalBaseValues"
 
 import "./styles.sass"
@@ -23,7 +23,7 @@ const AttributeBuy = () => {
   }, [ attributes, setAttributeAtMax ])
 
   const baseValues = attributes.map(( { name, base } ) => ( { name, base } )) as AttributesBase[]
-  const attributePoints = getPriorityValue(priorities)
+  const attributePoints = getAttributesPriorityValue(priorities)
 
   if(!attributePoints) {
     return null
