@@ -15,4 +15,4 @@ Project built to experiment with the following modern web frameworks and librari
 
 This project is unfinished and will likely remain so. It was an experiment with various design and practices.
 
-[[/preview.png|Shadowrun Sixth Edition Character Creator]]
+![Shadowrun Sixth Edition Character Creator](preview.png)
